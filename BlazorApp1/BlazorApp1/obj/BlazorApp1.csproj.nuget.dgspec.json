@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\exter\\Desktop\\Praxátor\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj": {}
+    "C:\\Users\\vojte\\Desktop\\GitHubProjects\\Praxe-Exterernity\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\exter\\Desktop\\Praxátor\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj": {
+    "C:\\Users\\vojte\\Desktop\\GitHubProjects\\Praxe-Exterernity\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\exter\\Desktop\\Praxátor\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj",
+        "projectUniqueName": "C:\\Users\\vojte\\Desktop\\GitHubProjects\\Praxe-Exterernity\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj",
         "projectName": "BlazorApp1",
-        "projectPath": "C:\\Users\\exter\\Desktop\\Praxátor\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj",
-        "packagesPath": "C:\\Users\\exter\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\exter\\Desktop\\Praxátor\\BlazorApp1\\BlazorApp1\\obj\\",
+        "projectPath": "C:\\Users\\vojte\\Desktop\\GitHubProjects\\Praxe-Exterernity\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj",
+        "packagesPath": "C:\\Users\\vojte\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vojte\\Desktop\\GitHubProjects\\Praxe-Exterernity\\BlazorApp1\\BlazorApp1\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\exter\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\vojte\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
