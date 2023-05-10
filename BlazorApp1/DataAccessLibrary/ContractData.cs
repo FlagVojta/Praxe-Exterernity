@@ -18,7 +18,7 @@ namespace DataAccessLibrary
 
         public Task EditContract(ContractModel Contract)
         {
-            string sql = "Update table tbContract set OrgName = @OrgName,Registred = @Registred, Based = @Based, ICO = @ICO, RepresentedBy = @RepresentedBy, StreetNumber = @StreetNumber, City = @City, PSC = @PSC, FirstName = @FirstName, LastName = @LastName,MobileNumber = @MobileNumber, WorkDescription = @WorkDescription, WorkStart = @WorkStart, WorkEnd = @WorkEnd, BreakStart = @BreakStart, BreakEnd = @BreakEnd  where Id = @Id";
+            string sql = "Update table dbo.tbContract set OrgName = @OrgName,Registred = @Registred, Based = @Based, ICO = @ICO, RepresentedBy = @RepresentedBy, StreetNumber = @StreetNumber, City = @City, PSC = @PSC, FirstName = @FirstName, LastName = @LastName,MobileNumber = @MobileNumber, WorkDescription = @WorkDescription, WorkStart = @WorkStart, WorkEnd = @WorkEnd, BreakStart = @BreakStart, BreakEnd = @BreakEnd  where Id = @Id";
 
             return _da.SaveData(sql, Contract);
         }

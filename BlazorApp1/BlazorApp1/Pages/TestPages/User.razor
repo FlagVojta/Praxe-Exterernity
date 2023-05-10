@@ -1,4 +1,5 @@
 ﻿@page "/Data/User"
+@attribute [Authorize(Roles = "Administrator")]
 @using DataAccessLibrary;
 @using DataAccessLibrary.Models
 @using DataAccessLibrary.Interfaces
@@ -7,6 +8,45 @@
 
 <h3>UserList</h3>
 
-@code {
 
+@if (Users == null)
+{
+    <div class="rz-m-12">
+        <RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+    </div>
+}
+else
+{
+    <table class = "table table-striped">
+        <tablehead>
+            <tr>
+                <th>Login</th>
+                <th>Type</th>
+            </tr>
+        </tablehead>
+        <tbody>
+            @foreach (var item in Users)
+            {
+                <tr>
+                    @item.Login
+                    @item.Type
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@code {
+    private List<UserModel> Users;
+    string login = "Velky";
+
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+
+        Users = await _db.GetUsers();
+
+        UserModel user = Users.Where(item => item.Login == login).Single();
+    }
 }

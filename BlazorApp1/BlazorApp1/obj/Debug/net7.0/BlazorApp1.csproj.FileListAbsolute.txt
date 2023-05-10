@@ -168,3 +168,6 @@ C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\BlazorApp1\obj\Deb
 C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\BlazorApp1\obj\Debug\net7.0\BlazorApp1.pdb
 C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\BlazorApp1\obj\Debug\net7.0\BlazorApp1.genruntimeconfig.cache
 C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\BlazorApp1\obj\Debug\net7.0\ref\BlazorApp1.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Dapper.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\BlazorApp1\bin\Debug\net7.0\DataAccessLibrary.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\BlazorApp1\bin\Debug\net7.0\DataAccessLibrary.pdb

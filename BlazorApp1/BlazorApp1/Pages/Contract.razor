@@ -1,5 +1,6 @@
-﻿@page "/contract"
-@using BlazorApp1.DbConnect;
+﻿@attribute [Authorize(Roles = "User")]
+@page "/contract"
+
 
 
 <PageTitle>Contract</PageTitle>

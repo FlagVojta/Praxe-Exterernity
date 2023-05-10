@@ -1,8 +1,12 @@
+using BlazorApp1.Authentication;
 using BlazorApp1.Data;
 using DataAccessLibrary;
 using DataAccessLibrary.Interfaces;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +17,8 @@ builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
 builder.Services.AddTransient<IUserData, UserData>();
 builder.Services.AddTransient<IContractData, ContractData>();
+builder.Services.AddScoped<ProtectedSessionStorage>();
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthentication>();
 
 var app = builder.Build();
 

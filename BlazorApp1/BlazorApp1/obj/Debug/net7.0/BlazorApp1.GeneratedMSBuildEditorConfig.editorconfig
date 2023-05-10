@@ -20,8 +20,8 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/exter/Desktop/Praxátor/Praxe-Exterernity/BlazorApp1/BlazorApp1/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+[C:/Users/exter/Desktop/Praxátor/Praxe-Exterernity/BlazorApp1/BlazorApp1/Pages/Contract.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29udHJhY3QucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/exter/Desktop/Praxátor/Praxe-Exterernity/BlazorApp1/BlazorApp1/Pages/FetchData.razor]
@@ -38,6 +38,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/exter/Desktop/Praxátor/Praxe-Exterernity/BlazorApp1/BlazorApp1/Pages/TestPages/User.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdFBhZ2VzXFVzZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/exter/Desktop/Praxátor/Praxe-Exterernity/BlazorApp1/BlazorApp1/Shared/LoginLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luTGF5b3V0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/exter/Desktop/Praxátor/Praxe-Exterernity/BlazorApp1/BlazorApp1/Shared/SurveyPrompt.razor]

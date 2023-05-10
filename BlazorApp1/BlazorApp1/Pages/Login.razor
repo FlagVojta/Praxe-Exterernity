@@ -1,6 +1,60 @@
 ﻿@page "/login"
-<h3>Component, @test</h3>
+@using BlazorApp1.Authentication;
+@using DataAccessLibrary.Interfaces;
+@using DataAccessLibrary.Models;
+@inject IJSRuntime js;
+@inject IUserData _db;
+@inject AuthenticationStateProvider authStateProvider;
+@inject NavigationManager navManager;
+<body>
+
+    <h1 class="text-center">Login</h1>
+
+    <input @bind=model.Login type="text"placeholder="Username">
+      <br>
+    <input @bind=model.Password type="password" placeholder="Password">
+    <button @onclick="Authenticate" class="btn btn-primary">Login</button>
+
+</body>
+
+
+
 
 @code {
-	string test = "ahoj";
+    private class Model
+    {
+        public string Login{ get; set; }
+        public string Password { get; set; }
+
+    }
+    List<UserModel> users = new();
+    //UserModel user = new();
+    private Model model = new();
+
+    private async Task Authenticate()
+    {
+        users = await _db.GetUsers();
+
+        UserModel? user = users.FirstOrDefault(item => item.Login == model.Login);
+
+        if (user == null || user.Password != model.Password)
+        {
+            await js.InvokeVoidAsync("Invalid Name or Password");
+            return;
+        }
+
+        var customAuthProvider = (CustomAuthentication)authStateProvider;
+
+        await customAuthProvider.UpdateAuthenticationState(new UserSession
+        {
+            Login = user.Login,
+            Role = user.Type
+        });
+
+
+    }
+
+
+
+    
 }
