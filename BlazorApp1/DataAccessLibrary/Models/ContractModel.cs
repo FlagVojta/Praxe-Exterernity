@@ -10,11 +10,11 @@ namespace DataAccessLibrary.Models
     {
         public int Id { get; set; }
         public string OrgName { get; set; }
-        public string Registered { get; set; }
+        public string Registred { get; set; }
         public string Based { get; set; }
         public string ICO { get; set; }
         public string RepresentedBy { get; set; }
-        public string StreetNumber { get; set; }
+        public string StreetANumber { get; set; }
         public string City { get; set; }
         public string PSC { get; set; }
         public string FirstName { get; set; }
@@ -25,5 +25,6 @@ namespace DataAccessLibrary.Models
         public string WorkEnd { get; set; }
         public string BreakStart { get; set; }
         public string BreakEnd { get; set; }
+        public DateTime LastChanged { get; set; }
     }
 }

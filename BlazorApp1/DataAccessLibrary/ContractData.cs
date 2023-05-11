@@ -24,7 +24,7 @@ namespace DataAccessLibrary
         }
         public Task EditContract(ContractModel contract)
         {
-            string sql = $"Update dbo.tbContract set OrgName = '{contract.OrgName}',Registred = '{contract.Registered}', Based = '{contract.Based}', ICO = '{contract.ICO}', RepresentedBy = '{contract.RepresentedBy}', StreetANumber = '{contract.StreetNumber}', City = '{contract.StreetNumber}', PSC = '{contract.PSC}', FirstName = '{contract.FirstName}', LastName = '{contract.LastName}',MobileNumber = '{contract.MobileNumber}', WorkDescription = '{contract.WorkDescription}', WorkStart = '{contract.WorkStart}', WorkEnd = '{contract.WorkEnd}', BreakStart = '{contract.BreakStart}', BreakEnd = '{contract.BreakEnd}'  where Id = {contract.Id}";
+            string sql = $"Update dbo.tbContract set OrgName = '{contract.OrgName}',Registred = '{contract.Registred}', Based = '{contract.Based}', ICO = '{contract.ICO}', RepresentedBy = '{contract.RepresentedBy}', StreetANumber = '{contract.StreetANumber}', City = '{contract.StreetANumber}', PSC = '{contract.PSC}', FirstName = '{contract.FirstName}', LastName = '{contract.LastName}',MobileNumber = '{contract.MobileNumber}', WorkDescription = '{contract.WorkDescription}', WorkStart = '{contract.WorkStart}', WorkEnd = '{contract.WorkEnd}', BreakStart = '{contract.BreakStart}', BreakEnd = '{contract.BreakEnd}', LastChanged = '{contract.LastChanged}'  where Id = {contract.Id}";
 
             return _da.SaveData(sql, contract);
         }

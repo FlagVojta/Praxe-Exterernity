@@ -27,7 +27,7 @@
                     <RadzenTextBox @bind-Value="@this.contract.OrgName"></RadzenTextBox>
                 </RadzenFormField>
                 <RadzenFormField Text="Zapsaná">
-                    <RadzenTextBox @bind-Value="@this.contract.Registered"></RadzenTextBox>
+                    <RadzenTextBox @bind-Value="@this.contract.Registred"></RadzenTextBox>
                 </RadzenFormField>
                 <RadzenFormField Text="Sídlo">
                     <RadzenTextBox @bind-Value="@this.contract.Based"></RadzenTextBox>
@@ -39,7 +39,7 @@
                     <RadzenTextBox @bind-Value="@this.contract.RepresentedBy"></RadzenTextBox>
                 </RadzenFormField>
                 <RadzenFormField Text="Ulice a číslo">
-                    <RadzenTextBox @bind-Value="@this.contract.StreetNumber"></RadzenTextBox>
+                    <RadzenTextBox @bind-Value="@this.contract.StreetANumber"></RadzenTextBox>
                 </RadzenFormField>
                 <RadzenFormField Text="PSČ">
                     <RadzenTextBox @bind-Value="@this.contract.PSC"></RadzenTextBox>
@@ -103,6 +103,7 @@
     private async Task Save()
     {
         FormatValidation validation = new();
+        
         try
         {
             validation.Validate(this.contract.WorkStart);
@@ -115,6 +116,7 @@
             Console.WriteLine("Invalid DateTime Format");
             return;
         }
+        this.contract.LastChanged = DateTime.Now;
         await _dbc.EditContract(this.contract);
 
     }

@@ -11,6 +11,8 @@ namespace DataAccessLibrary
     {
         public void Validate(string test)
         {
+            if (test == "")
+                return;
             Regex regex = new("^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$");
             if (regex.IsMatch(test) == false)
             {

@@ -6,16 +6,21 @@
 
 
 
-<RadzenDataGrid Data="@this.contracts" TItem="ContractModel" AllowVirtualization="true" Style="height:600px"
+<RadzenDataGrid Data="@this.contracts" TItem="ContractModel" AllowVirtualization="true" Style="height:700px"
                 AllowFiltering="true" FilterPopupRenderMode="PopupRenderMode.OnDemand" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" LogicalFilterOperator="LogicalFilterOperator.Or"
                 AllowSorting="true">
     <Columns>
         <RadzenDataGridColumn TItem="ContractModel" Property="OrgName" Title="Název Organizace" />
-        <RadzenDataGridColumn TItem="ContractModel" Property="Registered" Title="Registrována" />
+        <RadzenDataGridColumn TItem="ContractModel" Property="Registred" Title="Registrována" />
         <RadzenDataGridColumn TItem="ContractModel" Property="Based" Title="Sídlo" />
         <RadzenDataGridColumn TItem="ContractModel" Property="ICO" Title="IČO" />
-        <RadzenDataGridColumn TItem="ContractModel" Property="RepresendedBy" Title="Zastoupená" />
-        <RadzenDataGridColumn TItem="ContractModel" Property="StreetNumber" Title="Ulice a číslo"></RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="ContractModel" Property="RepresentedBy" Title="Zastoupená" />
+        <RadzenDataGridColumn TItem="ContractModel" Property="StreetANumber" Title="Ulice a číslo"></RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="ContractModel" Property="City" Title="Město"></RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="ContractModel" Property="PSC" Title="PSČ"></RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="ContractModel" Property="FirstName" Title="Jméno"></RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="ContractModel" Property="LastName" Title="Příjmení"></RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="ContractModel" Property="WorkDescription" Title="Popis Práce"></RadzenDataGridColumn>
        
     </Columns>
 </RadzenDataGrid>
