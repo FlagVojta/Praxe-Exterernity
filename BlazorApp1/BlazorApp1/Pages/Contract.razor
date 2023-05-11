@@ -21,13 +21,56 @@
     }
     else
     {
-        <h1>Test</h1>
-        @foreach (var item in this.properties)
-        {
-            object value = item.GetValue(this.contract);
-            <input type="text" placeholder="@value">
-
-        }
+        <RadzenColumn Size="12" SizeSM="6">
+            <RadzenStack>
+                <RadzenFormField Text="Název Organizace">
+                    <RadzenTextBox @bind-Value="@this.contract.OrgName"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="Zapsaná">
+                    <RadzenTextBox @bind-Value="@this.contract.Registered"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="Sídlo">
+                    <RadzenTextBox @bind-Value="@this.contract.Based"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="IČO">
+                    <RadzenTextBox @bind-Value="@this.contract.ICO"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="Zastoupená">
+                    <RadzenTextBox @bind-Value="@this.contract.RepresentedBy"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="Ulice a číslo">
+                    <RadzenTextBox @bind-Value="@this.contract.StreetNumber"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="PSČ">
+                    <RadzenTextBox @bind-Value="@this.contract.PSC"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="Jméno">
+                    <RadzenTextBox @bind-Value="@this.contract.FirstName"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="Příjmení">
+                    <RadzenTextBox @bind-Value="@this.contract.LastName"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="Telefon">
+                    <RadzenTextBox @bind-Value="@this.contract.MobileNumber"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="Popis Práce">
+                    <RadzenTextBox @bind-Value="@this.contract.WorkDescription"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="Od">
+                   <RadzenTextBox @bind-Value="@this.contract.WorkStart"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="Do">
+                    <RadzenTextBox @bind-Value="@this.contract.WorkEnd"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="Od">
+                   <RadzenTextBox @bind-Value="@this.contract.BreakStart"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="Do">
+                  <RadzenTextBox @bind-Value="@this.contract.BreakEnd"></RadzenTextBox>
+                </RadzenFormField>
+            </RadzenStack>
+        </RadzenColumn>
+        <button @onclick=Save>Save</button>
     }
     
     
@@ -54,6 +97,25 @@
         this.contract = await _dbc.GetUserContract(user.ContractId);
 
         this.properties = this.contract.GetType().GetProperties().ToList();
+
+    }
+
+    private async Task Save()
+    {
+        FormatValidation validation = new();
+        try
+        {
+            validation.Validate(this.contract.WorkStart);
+            validation.Validate(this.contract.WorkEnd);
+            validation.Validate(this.contract.BreakStart);
+            validation.Validate(this.contract.BreakEnd);
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Invalid DateTime Format");
+            return;
+        }
+        await _dbc.EditContract(this.contract);
 
     }
 

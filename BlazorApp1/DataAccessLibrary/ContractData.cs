@@ -16,16 +16,22 @@ namespace DataAccessLibrary
             this._da = _da;
         }
 
-        public Task EditContract(ContractModel Contract)
+        public Task<List<ContractModel>> GetContracts()
         {
-            string sql = "Update table dbo.tbContract set OrgName = @OrgName,Registred = @Registred, Based = @Based, ICO = @ICO, RepresentedBy = @RepresentedBy, StreetNumber = @StreetNumber, City = @City, PSC = @PSC, FirstName = @FirstName, LastName = @LastName,MobileNumber = @MobileNumber, WorkDescription = @WorkDescription, WorkStart = @WorkStart, WorkEnd = @WorkEnd, BreakStart = @BreakStart, BreakEnd = @BreakEnd  where Id = @Id";
+            string sql = $"select * from tbContract";
 
-            return _da.SaveData(sql, Contract);
+            return _da.LoadData<ContractModel, dynamic>(sql,new { });
+        }
+        public Task EditContract(ContractModel contract)
+        {
+            string sql = $"Update dbo.tbContract set OrgName = '{contract.OrgName}',Registred = '{contract.Registered}', Based = '{contract.Based}', ICO = '{contract.ICO}', RepresentedBy = '{contract.RepresentedBy}', StreetANumber = '{contract.StreetNumber}', City = '{contract.StreetNumber}', PSC = '{contract.PSC}', FirstName = '{contract.FirstName}', LastName = '{contract.LastName}',MobileNumber = '{contract.MobileNumber}', WorkDescription = '{contract.WorkDescription}', WorkStart = '{contract.WorkStart}', WorkEnd = '{contract.WorkEnd}', BreakStart = '{contract.BreakStart}', BreakEnd = '{contract.BreakEnd}'  where Id = {contract.Id}";
+
+            return _da.SaveData(sql, contract);
         }
 
         public Task<ContractModel> GetUserContract(int Id)
         {
-            string sql = "select * from tbContract where Id = @Id";
+            string sql = $"select * from tbContract where Id = {Id}";
 
             return _da.LoadOne<ContractModel,int>(sql, Id);
         }

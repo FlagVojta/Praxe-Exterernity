@@ -5,6 +5,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Reflection.Metadata;
+using System.Text.Json;
 
 namespace DataAccessLibrary
 {
@@ -48,7 +49,7 @@ namespace DataAccessLibrary
 
             using (IDbConnection connect = new SqlConnection(connectionString))
             {
-                var data = await connect.QueryFirstAsync(sql, parametr);
+                var data = await connect.QueryFirstAsync<T>(sql, parametr);
                
                 return data;
             }
