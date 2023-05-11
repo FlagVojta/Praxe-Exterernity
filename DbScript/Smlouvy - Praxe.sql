@@ -8,7 +8,7 @@ CREATE TABLE tbUser (
   Id int identity(1,1) PRIMARY KEY,
   ContractId int,
   Type varchar(50),
-  Login varchar(50),
+  Login varchar(50) unique,
   Password varchar(50)
 );
 
@@ -51,9 +51,6 @@ as
 		print 'Funguje to'
 	end
 go
-
-select * from tbUser
-
 
 --insert into tbUser(type,login,password) values ('User','Marek','Cena')
 --select * from tbUser
