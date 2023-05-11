@@ -39,7 +39,7 @@ else
 
 @code {
     private List<UserModel> Users;
-    string login = "Velky";
+   
 
     protected override async Task OnInitializedAsync()
     {
@@ -47,6 +47,6 @@ else
 
         Users = await _db.GetUsers();
 
-        UserModel user = Users.Where(item => item.Login == login).Single();
+        
     }
 }

@@ -9,15 +9,13 @@
         <h1>Hello @context.User.Identity.Name!</h1>
     </Authorized>
     <NotAuthorized>
-        <h1>Hello Guest</h1>
+        <h1 class="text text-center">Hello Guest</h1>
     </NotAuthorized>
 </AuthorizeView>
 
-<a href="/login">Login</a>
-
 <AuthorizeView>
     <Authorized>
-        <button class="btn btn-outline-primary" @onclick=DisplayHello>Sui</button>
+        <h1>Login Success</h1>
     </Authorized>
 </AuthorizeView>
 

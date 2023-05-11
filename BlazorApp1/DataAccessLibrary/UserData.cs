@@ -23,5 +23,12 @@ namespace DataAccessLibrary
             return _da.LoadData<UserModel, dynamic>(sql, new { });
         }
 
+        public Task<UserModel> GetUser(string Login)
+        {
+            string sql = $"select * from dbo.tbUser where Login = '{Login}'";
+
+            return _da.LoadOne<UserModel,dynamic>(sql,new { });
+        }
+
     }
 }

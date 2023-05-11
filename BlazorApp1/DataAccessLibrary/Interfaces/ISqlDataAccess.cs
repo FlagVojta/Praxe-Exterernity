@@ -1,4 +1,6 @@
-﻿namespace DataAccessLibrary.Interfaces
+﻿using DataAccessLibrary.Models;
+
+namespace DataAccessLibrary.Interfaces
 {
     public interface ISqlDataAccess
     {
@@ -6,5 +8,6 @@
 
         Task<List<T>> LoadData<T, U>(string sql, U parametrs);
         Task SaveData<T>(string sql, T parametrs);
+        Task<T> LoadOne<T,U>(string sql, U parametrs);
     }
 }

@@ -23,11 +23,11 @@ namespace DataAccessLibrary
             return _da.SaveData(sql, Contract);
         }
 
-        public Task GetUserContract(int Id)
+        public Task<ContractModel> GetUserContract(int Id)
         {
             string sql = "select * from tbContract where Id = @Id";
 
-            return _da.LoadData<UserModel, dynamic>(sql, new { });
+            return _da.LoadOne<ContractModel,int>(sql, Id);
         }
 
     }

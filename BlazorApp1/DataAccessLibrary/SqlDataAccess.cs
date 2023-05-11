@@ -1,8 +1,10 @@
 ﻿using Dapper;
 using DataAccessLibrary.Interfaces;
+using DataAccessLibrary.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Data;
+using System.Reflection.Metadata;
 
 namespace DataAccessLibrary
 {
@@ -37,6 +39,18 @@ namespace DataAccessLibrary
             using (IDbConnection connect = new SqlConnection(connectionString))
             {
                 await connect.ExecuteAsync(sql, parametrs);
+            }
+        }
+
+        public async Task<T> LoadOne<T,U>(string sql, U parametr)
+        {
+            string connectionString = _config.GetConnectionString(ConnectionStringName);
+
+            using (IDbConnection connect = new SqlConnection(connectionString))
+            {
+                var data = await connect.QueryFirstAsync(sql, parametr);
+               
+                return data;
             }
         }
 

@@ -45,13 +45,14 @@
         }
 
         var customAuthProvider = (CustomAuthentication)authStateProvider;
-
+        
         await customAuthProvider.UpdateAuthenticationState(new UserSession
         {
             Login = user.Login,
-            Role = user.Type
+            Role = user.Type,
+            
         });
-
+        navManager.NavigateTo("/", true);
 
     }
 

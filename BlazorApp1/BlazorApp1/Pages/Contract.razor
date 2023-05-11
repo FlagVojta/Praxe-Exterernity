@@ -1,14 +1,60 @@
 ﻿@attribute [Authorize(Roles = "User")]
 @page "/contract"
+@inject IUserData _dbu
+@inject IContractData _dbc
+@using DataAccessLibrary;
+@using DataAccessLibrary.Models
+@using DataAccessLibrary.Interfaces
+@using System.Reflection;
 
 
 
 <PageTitle>Contract</PageTitle>
 
 <h1>Smlouva</h1>
+@{
+    @if (this.contract == null)
+    {
+        <div class="rz-m-12">
+            <RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+        </div>
+    }
+    else
+    {
+        <h1>Test</h1>
+        @foreach (var item in this.properties)
+        {
+            object value = item.GetValue(this.contract);
+            <input type="text" placeholder="@value">
+
+        }
+    }
+    
+    
+}
+
 
 
 @code {
-  
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+    private List<UserModel> users = new();
+    private UserModel user = new();
+    private ContractModel contract = new();
+    private List<PropertyInfo> properties = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+
+        var authState = await authenticationState;
+
+        this.user = await _dbu.GetUser(authState.User.Identity.Name);
+
+        this.contract = await _dbc.GetUserContract(user.ContractId);
+
+        this.properties = this.contract.GetType().GetProperties().ToList();
+
+    }
 
 }

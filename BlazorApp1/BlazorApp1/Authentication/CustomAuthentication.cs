@@ -47,6 +47,7 @@ namespace BlazorApp1.Authentication
         }
         public async Task UpdateAuthenticationState(UserSession userSession)
         {
+            
             ClaimsPrincipal claimsprincipal = new();
             if (userSession != null)
             {
@@ -54,7 +55,8 @@ namespace BlazorApp1.Authentication
                 var claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, userSession.Login),
-                    new Claim(ClaimTypes.Role, userSession.Role)
+                    new Claim(ClaimTypes.Role, userSession.Role),
+                    
                 }));
             }
             else
