@@ -2,53 +2,59 @@ create database dbPraxe
 go
 use dbPraxe
 
-go
 
 CREATE TABLE tbUser (
   Id int identity(1,1) PRIMARY KEY,
   ContractId int,
   Type varchar(50),
   Login varchar(50) unique,
-  Password varchar(50)
+  Password varchar(50),
+  Name varchar(50),
+  LastName varchar(50)
 );
 
 go
 CREATE TABLE tbContract(
 
   Id int identity(1,1) PRIMARY KEY,
-  OrgName varchar(100) default(''),
-  Registred varchar(100) default(''),
-  Based varchar(100) default(''),
-  ICO varchar(50) default(''),
-  RepresentedBy varchar(30) default(''),
-  StreetANumber varchar(100) default(''),
-  City varchar(30) default(''),
-  PSC varchar(30) default(''),
-  FirstName varchar(50) default(''),
-  LastName varchar(50) default(''),
-  MobileNumber varchar(20) default(''),
-  WorkDescription varchar(2000) default(''),
-  WorkStart varchar(50) default(''),
-  WorkEnd varchar(50) default(''),
-  BreakStart varchar(50) default(''),
-  BreakEnd varchar(50) default('')
-);
+  OrgName varchar(100) default null,
+  Registred varchar(100) default null,
+  Based varchar(100) default null,
+  ICO varchar(50) default null,
+  RepresentedBy varchar(30) default null,
+  StreetANumber varchar(100) default null,
+  City varchar(30) default null,
+  PSC varchar(30) default null,
+  FirstName varchar(50) default null,
+  LastName varchar(50) default null,
+  MobileNumber varchar(20) default null,
+  WorkDescription varchar(2000) default null,
+  WorkStart varchar(30) default null,
+  WorkEnd varchar(30) default null,
+  BreakStart varchar(30) default null,
+  BreakEnd varchar(30) default null,
+  LastChanged datetime default null
+)
 
 go
-
 
 create trigger trUserInsert
 on tbUser
 after insert
 as
 	begin
-		declare @ContractId int
-		DECLARE @UserId INT;
-		insert into tbContract default values
-		update tbUser 
-		set ContractId = SCOPE_IDENTITY()
-		where Id = (select Id from inserted)
-		print 'Funguje to'
+		declare @type varchar(50)
+		set @type = (select Type from inserted)
+		if(@type = 'User')
+			begin
+				declare @ContractId int
+				DECLARE @UserId INT;
+				insert into tbContract default values
+				update tbUser 
+				set ContractId = SCOPE_IDENTITY()
+				where Id = (select Id from inserted)
+				print 'Funguje to'
+			end
 	end
 go
 

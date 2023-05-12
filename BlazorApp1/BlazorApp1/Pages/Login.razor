@@ -1,12 +1,15 @@
-﻿@page "/login"
+﻿@layout LoginLayout
+@page "/"
 @using BlazorApp1.Authentication;
 @using DataAccessLibrary.Interfaces;
 @using DataAccessLibrary.Models;
+@inject NotificationService service
 @inject IJSRuntime js;
 @inject IUserData _db;
 @inject AuthenticationStateProvider authStateProvider;
 @inject NavigationManager navManager;
-<body>
+
+@*<body>
 
     <h1 class="text-center">Login</h1>
 
@@ -17,9 +20,22 @@
     
 
 </body>
+*@
+<RadzenCard class="rz-my-12 rz-mx-auto rz-p-4 rz-p-md-12" style="max-width: 600px;">
+    <RadzenStack Gap="2rem">
+    <RadzenFormField Text="Username">
+        <RadzenTextBox @bind-Value="@model.Login" />
+    </RadzenFormField>
+    <RadzenFormField Text="Password">
+        <RadzenPassword  @bind-Value="@model.Password" />
+    </RadzenFormField>
+        <RadzenButton Click=@(args => Authenticate(new NotificationMessage { Style = "position: absolute; left: -1000px;", Severity = NotificationSeverity.Success, Summary = "Success Summary", Detail = "Success Detail", Duration = 40000 })) Text="Login" ButtonStyle="ButtonStyle.Primary" />
+    </RadzenStack>
+</RadzenCard>
 
 
-
+@*
+<RadzenLogin AllowRegister=false Login="@Authenticate"></RadzenLogin>*@
 
 @code {
     private class Model
@@ -32,7 +48,7 @@
     //UserModel user = new();
     private Model model = new();
 
-    private async Task Authenticate()
+    private async Task Authenticate(NotificationMessage message)
     {
         users = await _db.GetUsers();
 
@@ -40,7 +56,7 @@
 
         if (user == null || user.Password != model.Password)
         {
-            await js.InvokeVoidAsync("Invalid Name or Password");
+            service.Notify(message);
             return;
         }
 
@@ -52,7 +68,7 @@
             Role = user.Type,
             
         });
-        navManager.NavigateTo("/", true);
+        navManager.NavigateTo("/greetings", true);
 
     }
 
