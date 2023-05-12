@@ -8,8 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid" Version="8.0.0-preview.3.23177.8" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
     <PackageReference Include="Radzen.Blazor" Version="4.10.4" />
+    <PackageReference Include="Syncfusion.Blazor.Grid" Version="21.2.4" />
   </ItemGroup>
 
   <ItemGroup>

@@ -18,7 +18,7 @@ namespace DataAccessLibrary
 
         public Task<List<ContractModel>> GetContracts()
         {
-            string sql = $"select * from tbContract";
+            string sql = $"select * from dbo.tbContract";
 
             return _da.LoadData<ContractModel, dynamic>(sql,new { });
         }

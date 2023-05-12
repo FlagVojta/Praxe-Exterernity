@@ -9,19 +9,7 @@
 @inject AuthenticationStateProvider authStateProvider;
 @inject NavigationManager navManager;
 
-@*<body>
-
-    <h1 class="text-center">Login</h1>
-
-    <input @bind=model.Login type="text"placeholder="Username">
-      <br>
-    <input @bind=model.Password type="password" placeholder="Password">
-    <button @onclick="Authenticate" class="btn btn-primary">Login</button>
-    
-
-</body>
-*@
-<RadzenCard class="rz-my-12 rz-mx-auto rz-p-4 rz-p-md-12" style="max-width: 600px;">
+<RadzenCard class="rz-my-12 rz-mx-auto rz-p-2 rz-p-md-8" style="max-width: 400px; position:center">
     <RadzenStack Gap="2rem">
     <RadzenFormField Text="Username">
         <RadzenTextBox @bind-Value="@model.Login" />
@@ -29,50 +17,52 @@
     <RadzenFormField Text="Password">
         <RadzenPassword  @bind-Value="@model.Password" />
     </RadzenFormField>
-        <RadzenButton Click=@(args => Authenticate(new NotificationMessage { Style = "position: absolute; left: -1000px;", Severity = NotificationSeverity.Success, Summary = "Success Summary", Detail = "Success Detail", Duration = 40000 })) Text="Login" ButtonStyle="ButtonStyle.Primary" />
+        <RadzenButton Click=@Authenticate Text="Login" ButtonStyle="ButtonStyle.Primary" />
     </RadzenStack>
 </RadzenCard>
-
-
-@*
-<RadzenLogin AllowRegister=false Login="@Authenticate"></RadzenLogin>*@
+<RadzenNotification />
 
 @code {
     private class Model
     {
         public string Login{ get; set; }
         public string Password { get; set; }
-
     }
     List<UserModel> users = new();
     //UserModel user = new();
     private Model model = new();
 
-    private async Task Authenticate(NotificationMessage message)
+    private async Task Authenticate()
     {
         users = await _db.GetUsers();
-
         UserModel? user = users.FirstOrDefault(item => item.Login == model.Login);
 
         if (user == null || user.Password != model.Password)
         {
+            NotificationMessage message = new NotificationMessage 
+            { 
+                Severity = NotificationSeverity.Error, 
+                Summary = "Error", 
+                Detail = "Incorrect Username or Password", 
+                Duration = 4000 
+            };
             service.Notify(message);
             return;
         }
-
         var customAuthProvider = (CustomAuthentication)authStateProvider;
-        
+
         await customAuthProvider.UpdateAuthenticationState(new UserSession
         {
             Login = user.Login,
             Role = user.Type,
-            
+
         });
-        navManager.NavigateTo("/greetings", true);
-
+        if (user.Type == "Administrator")
+        {
+            navManager.NavigateTo("/ContractList", true);
+            return;
+        }
+        navManager.NavigateTo("/Contract", true);
+        
     }
-
-
-
-    
 }

@@ -2,6 +2,7 @@
 @page "/contract"
 @inject IUserData _dbu
 @inject IContractData _dbc
+@inject NotificationService service
 @using DataAccessLibrary;
 @using DataAccessLibrary.Models
 @using DataAccessLibrary.Interfaces
@@ -23,95 +24,88 @@
     {
         <div class="rz-p-0 rz-p-md-12">
            
-               
+            <h4>Firma</h4>
+            <RadzenStack>
 
-                    <h4>Firma</h4>
-                    <RadzenStack>
+                <RadzenFormField Text="Název Organizace">
+                    <RadzenTextBox @bind-Value="@this.contract.OrgName"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="Zapsaná">
+                    <RadzenTextBox @bind-Value="@this.contract.Registred"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="Sídlo">
+                    <RadzenTextBox @bind-Value="@this.contract.Based"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="IČO">
+                    <RadzenTextBox @bind-Value="@this.contract.ICO"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="Zastoupená">
+                    <RadzenTextBox @bind-Value="@this.contract.RepresentedBy"></RadzenTextBox>
+                </RadzenFormField>
+            </RadzenStack>
+            <br>
+            <h4>Místo výkonu Praxe</h4>
+            <RadzenStack>
+                        
+                <RadzenFormField Text="Ulice a číslo">
+                    <RadzenTextBox @bind-Value="@this.contract.StreetANumber"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="Město">
+                    <RadzenTextBox @bind-Value="@this.contract.City"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="PSČ">
+                    <RadzenTextBox @bind-Value="@this.contract.PSC"></RadzenTextBox>
+                </RadzenFormField>
+            </RadzenStack>
+            <br>
+            <h4>Pověřená Osoba</h4>
+            <RadzenStack>
+                        
+                <RadzenFormField Text="Jméno">
+                    <RadzenTextBox @bind-Value="@this.contract.FirstName"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="Příjmení">
+                    <RadzenTextBox @bind-Value="@this.contract.LastName"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="Telefon">
+                    <RadzenTextBox @bind-Value="@this.contract.MobileNumber"></RadzenTextBox>
+                </RadzenFormField>
+            </RadzenStack>
+            <br>
+            <h4>Druh činností, které bude žák vykonávat</h4>
+            <RadzenStack>
+                <RadzenFormField Text="Popis práce" Variant="@variant">
+                    <RadzenTextArea @bind-Value="@this.contract.WorkDescription" />
+                </RadzenFormField>
+            </RadzenStack>
+            <br>
 
-                        <RadzenFormField Text="Název Organizace">
-                            <RadzenTextBox @bind-Value="@this.contract.OrgName"></RadzenTextBox>
-                        </RadzenFormField>
-                        <RadzenFormField Text="Zapsaná">
-                            <RadzenTextBox @bind-Value="@this.contract.Registred"></RadzenTextBox>
-                        </RadzenFormField>
-                        <RadzenFormField Text="Sídlo">
-                            <RadzenTextBox @bind-Value="@this.contract.Based"></RadzenTextBox>
-                        </RadzenFormField>
-                        <RadzenFormField Text="IČO">
-                            <RadzenTextBox @bind-Value="@this.contract.ICO"></RadzenTextBox>
-                        </RadzenFormField>
-                        <RadzenFormField Text="Zastoupená">
-                            <RadzenTextBox @bind-Value="@this.contract.RepresentedBy"></RadzenTextBox>
-                        </RadzenFormField>
-                    </RadzenStack>
-                    <br>
-                    <h4>Místo výkonu Praxe</h4>
-                    <RadzenStack>
-                        
-                        <RadzenFormField Text="Ulice a číslo">
-                            <RadzenTextBox @bind-Value="@this.contract.StreetANumber"></RadzenTextBox>
-                        </RadzenFormField>
-                        <RadzenFormField Text="Město">
-                            <RadzenTextBox @bind-Value="@this.contract.City"></RadzenTextBox>
-                        </RadzenFormField>
-                        <RadzenFormField Text="PSČ">
-                            <RadzenTextBox @bind-Value="@this.contract.PSC"></RadzenTextBox>
-                        </RadzenFormField>
-                    </RadzenStack>
-                    <br>
-                <h4>Pověřená Osoba</h4>
-                <RadzenStack>
-                        
-                    <RadzenFormField Text="Jméno">
-                        <RadzenTextBox @bind-Value="@this.contract.FirstName"></RadzenTextBox>
-                    </RadzenFormField>
-                    <RadzenFormField Text="Příjmení">
-                        <RadzenTextBox @bind-Value="@this.contract.LastName"></RadzenTextBox>
-                    </RadzenFormField>
-                    <RadzenFormField Text="Telefon">
-                        <RadzenTextBox @bind-Value="@this.contract.MobileNumber"></RadzenTextBox>
-                    </RadzenFormField>
-                </RadzenStack>
-                <br>
-                <h4>Druh činností, které bude žák vykonávat</h4>
-                <RadzenStack>
-                        
-                    <RadzenFormField Text="Popis Práce">
-                        <RadzenTextBox @bind-Value="@this.contract.WorkDescription"></RadzenTextBox>
-                    </RadzenFormField>
-                </RadzenStack>
-                <br>
-
-                <h4>Časový rozvrh</h4>
-                <h5>Pracovní doba</h5>
-                <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.5rem" Class="rz-p-4 rz-mb-6 rz-border-radius-1" Style="border: var(--rz-grid-cell-border);">
-                    <RadzenFormField Text="Od">
-                        <RadzenTextBox @bind-Value="@this.contract.WorkStart"></RadzenTextBox>
-                    </RadzenFormField>
-                    <RadzenFormField Text="Do">
-                        <RadzenTextBox @bind-Value="@this.contract.WorkEnd"></RadzenTextBox>
-                    </RadzenFormField>
-                </RadzenStack>
+            <h4>Časový rozvrh</h4>
+            <h5>Pracovní doba</h5>
+            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.5rem" Class="rz-p-4 rz-mb-6 rz-border-radius-1" Style="border: var(--rz-grid-cell-border);">
+                <RadzenFormField Text="Od">
+                    <RadzenTextBox @bind-Value="@this.contract.WorkStart"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="Do">
+                    <RadzenTextBox @bind-Value="@this.contract.WorkEnd"></RadzenTextBox>
+                </RadzenFormField>
+            </RadzenStack>
                 
-                <h5>Přestávka</h5>
-                <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.5rem" Class="rz-p-4 rz-mb-6 rz-border-radius-1" Style="border: var(--rz-grid-cell-border);">
-                    <RadzenFormField Text="Od">
-                        <RadzenTextBox @bind-Value="@this.contract.BreakStart"></RadzenTextBox>
-                    </RadzenFormField>
-                    <RadzenFormField Text="Do">
-                        <RadzenTextBox @bind-Value="@this.contract.BreakEnd"></RadzenTextBox>
-                    </RadzenFormField>
-                </RadzenStack>
-                
-           
+            <h5>Přestávka</h5>
+            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.5rem" Class="rz-p-4 rz-mb-6 rz-border-radius-1" Style="border: var(--rz-grid-cell-border);">
+                <RadzenFormField Text="Od">
+                    <RadzenTextBox @bind-Value="@this.contract.BreakStart"></RadzenTextBox>
+                </RadzenFormField>
+                <RadzenFormField Text="Do">
+                    <RadzenTextBox @bind-Value="@this.contract.BreakEnd"></RadzenTextBox>
+                </RadzenFormField>
+            </RadzenStack>
                 
             <br>
             <RadzenButton Click=@Save Text="Save" ButtonStyle="ButtonStyle.Primary" />
         </div>
-        
-    }
-    
-    
+        <RadzenNotification></RadzenNotification>
+    }        
 }
 
 
@@ -123,6 +117,7 @@
     private UserModel user = new();
     private ContractModel contract = new();
     private List<PropertyInfo> properties = new();
+    Variant variant = Variant.Outlined;
 
     protected override async Task OnInitializedAsync()
     {
@@ -134,14 +129,13 @@
 
         this.contract = await _dbc.GetUserContract(user.ContractId);
 
-        this.properties = this.contract.GetType().GetProperties().ToList();
 
     }
 
     private async Task Save()
     {
         FormatValidation validation = new();
-        
+
         try
         {
             validation.Validate(this.contract.WorkStart);
@@ -151,11 +145,27 @@
         }
         catch (Exception)
         {
-            Console.WriteLine("Invalid DateTime Format");
+            NotificationMessage Errormessage = new NotificationMessage 
+            {
+                Severity = NotificationSeverity.Error, 
+                Summary = "Error", 
+                Detail = "Incorrect Date Format HH:mm", 
+                Duration = 4000 
+            };
+            service.Notify(Errormessage);
             return;
         }
         this.contract.LastChanged = DateTime.Now;
         await _dbc.EditContract(this.contract);
+        NotificationMessage Goodmessage = new NotificationMessage
+        {
+            Severity = NotificationSeverity.Success,
+            Summary = "Approved",
+            Detail = "Saved",
+            Duration = 4000
+        };
+        service.Notify(Goodmessage);
+
 
     }
 

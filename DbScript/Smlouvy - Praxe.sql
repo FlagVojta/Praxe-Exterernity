@@ -17,23 +17,23 @@ go
 CREATE TABLE tbContract(
 
   Id int identity(1,1) PRIMARY KEY,
-  OrgName varchar(100) default null,
-  Registred varchar(100) default null,
-  Based varchar(100) default null,
-  ICO varchar(50) default null,
-  RepresentedBy varchar(30) default null,
-  StreetANumber varchar(100) default null,
-  City varchar(30) default null,
-  PSC varchar(30) default null,
-  FirstName varchar(50) default null,
-  LastName varchar(50) default null,
-  MobileNumber varchar(20) default null,
-  WorkDescription varchar(2000) default null,
-  WorkStart varchar(30) default null,
-  WorkEnd varchar(30) default null,
-  BreakStart varchar(30) default null,
-  BreakEnd varchar(30) default null,
-  LastChanged datetime default null
+  OrgName varchar(100) default(''),
+  Registred varchar(100) default (''),
+  Based varchar(100) default (''),
+  ICO varchar(50) default (''),
+  RepresentedBy varchar(30) default (''),
+  StreetANumber varchar(100) default (''),
+  City varchar(30) default (''),
+  PSC varchar(30) default (''),
+  FirstName varchar(50) default (''),
+  LastName varchar(50) default (''),
+  MobileNumber varchar(20) default (''),
+  WorkDescription varchar(2000) default (''),
+  WorkStart varchar(30) default (''),
+  WorkEnd varchar(30) default (''),
+  BreakStart varchar(30) default (''),
+  BreakEnd varchar(30) default (''),
+  LastChanged datetime default ('')
 )
 
 go
@@ -57,6 +57,9 @@ as
 			end
 	end
 go
+
+
+
 
 --insert into tbUser(type,login,password) values ('User','Marek','Cena')
 --select * from tbUser
