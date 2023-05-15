@@ -129,11 +129,7 @@
         }
 
         this.user = await _dbu.GetUser(authState.User.Identity.Name);
-
-
         this.contract = await _dbc.GetUserContract(user.ContractId);
-
-
     }
 
     private async Task Save()
@@ -146,6 +142,8 @@
             validation.Validate(this.contract.WorkEnd);
             validation.Validate(this.contract.BreakStart);
             validation.Validate(this.contract.BreakEnd);
+            this.contract.LastChanged = DateTime.Now.ToString("MM.dd.yyyy HH:mm:ss");
+            await _dbc.EditContract(this.contract);
         }
         catch (Exception)
         {
@@ -153,14 +151,13 @@
             {
                 Severity = NotificationSeverity.Error, 
                 Summary = "Error", 
-                Detail = "Incorrect Date Format HH:mm", 
+                 
                 Duration = 4000 
+
             };
             service.Notify(errorMessage);
             return;
         }
-        this.contract.LastChanged = DateTime.Now;
-        await _dbc.EditContract(this.contract);
         NotificationMessage goodMessage = new NotificationMessage
         {
             Severity = NotificationSeverity.Success,
@@ -169,8 +166,6 @@
             Duration = 4000
         };
         service.Notify(goodMessage);
-
-
     }
 
 }

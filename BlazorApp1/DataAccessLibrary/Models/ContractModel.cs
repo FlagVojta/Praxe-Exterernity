@@ -25,6 +25,6 @@ namespace DataAccessLibrary.Models
         public string? WorkEnd { get; set; }
         public string? BreakStart { get; set; }
         public string? BreakEnd { get; set; }
-        public DateTime LastChanged { get; set; }
+        public string LastChanged { get; set; }
     }
 }

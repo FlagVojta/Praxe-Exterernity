@@ -22,11 +22,4 @@
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }
 
-    public async Task DisplayHello()
-    {
-        var authState = await authenticationState;
-        var message = $"{authState.User.Identity.Name}";
-        await js.InvokeVoidAsync("alert", message);
-    }
-
 }
