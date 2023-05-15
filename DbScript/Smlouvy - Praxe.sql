@@ -37,7 +37,8 @@ CREATE TABLE tbContract(
 )
 
 go
-
+ALTER TABLE tbUser ADD FOREIGN KEY (ContractId) REFERENCES tbContract (Id);
+go
 create trigger trUserInsert
 on tbUser
 after insert
