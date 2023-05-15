@@ -171,3 +171,9 @@ C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\BlazorApp1\obj\Deb
 C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Dapper.dll
 C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\BlazorApp1\bin\Debug\net7.0\DataAccessLibrary.dll
 C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\BlazorApp1\bin\Debug\net7.0\DataAccessLibrary.pdb
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\BlazorApp1\bin\Debug\net7.0\EntityFrameWorkDataAccess.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\BlazorApp1\bin\Debug\net7.0\EntityFrameWorkDataAccess.pdb

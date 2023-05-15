@@ -2,15 +2,19 @@ using BlazorApp1.Authentication;
 using BlazorApp1.Data;
 using DataAccessLibrary;
 using DataAccessLibrary.Interfaces;
+using EntityFrameWorkDataAccess;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Radzen;
 
 
+
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("Default");
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -22,7 +26,9 @@ builder.Services.AddTransient<IContractData, ContractData>();
 builder.Services.AddScoped<ProtectedSessionStorage>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthentication>();
 builder.Services.AddScoped<NotificationService>();
-
+builder.Services.AddDbContextFactory<DemoDbContext>((DbContextOptionsBuilder options) => options.UseSqlServer(connectionString));
+builder.Services.AddTransient<DatabaseService>();
+builder.Services.AddTransient<DemoDbContext>();
 
 var app = builder.Build();
 

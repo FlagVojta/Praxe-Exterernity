@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLibrary.Models
 {
-    public class UserModel
+    public class tbUser
     {
         public int Id { get; set; }
         public int ContractId { get; set; }
@@ -15,5 +15,8 @@ namespace DataAccessLibrary.Models
         public string Password { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
+
+       
+
     }
 }

@@ -28,14 +28,14 @@
         public string Login{ get; set; }
         public string Password { get; set; }
     }
-    List<UserModel> users = new();
+    List<tbUser> users = new();
     //UserModel user = new();
     private Model model = new();
 
     private async Task Authenticate()
     {
         users = await _db.GetUsers();
-        UserModel? user = users.FirstOrDefault(item => item.Login == model.Login);
+        tbUser? user = users.FirstOrDefault(item => item.Login == model.Login);
 
         if (user == null || user.Password != model.Password)
         {

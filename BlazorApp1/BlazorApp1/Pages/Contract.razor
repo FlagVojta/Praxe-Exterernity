@@ -1,13 +1,17 @@
 ﻿@attribute [Authorize(Roles = "User,Administrator")]
 @page "/contract"
+@inject DatabaseService dbService
+@inject DemoDbContext context
 @inject IUserData _dbu
 @inject IContractData _dbc
 @inject NotificationService service
 @inject NavigationManager navMan
 @using DataAccessLibrary;
-@using DataAccessLibrary.Models
+
 @using DataAccessLibrary.Interfaces
 @using System.Reflection;
+@using EntityFrameWorkDataAccess;
+@using EntityFrameWorkDataAccess.Models;
 
 
 
@@ -17,6 +21,7 @@
 @{
     @if (this.contract == null)
     {
+        
         <div class="rz-m-12">
             <RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
         </div>
@@ -61,10 +66,10 @@
             <h4>Pověřená Osoba</h4>
             <RadzenStack>                     
                 <RadzenFormField Text="Jméno">
-                    <RadzenTextBox Disabled=@disabled @bind-Value="@this.contract.FirstName"></RadzenTextBox>
+                    <RadzenTextBox Disabled=@disabled @bind-Value="@this.contract.RepresentedFirstName"></RadzenTextBox>
                 </RadzenFormField>
                 <RadzenFormField Text="Příjmení">
-                    <RadzenTextBox Disabled=@disabled @bind-Value="@this.contract.LastName"></RadzenTextBox>
+                    <RadzenTextBox Disabled=@disabled @bind-Value="@this.contract.RepresentedLastName"></RadzenTextBox>
                 </RadzenFormField>
                 <RadzenFormField Text="Telefon">
                     <RadzenTextBox Disabled=@disabled @bind-Value="@this.contract.MobileNumber"></RadzenTextBox>
@@ -104,17 +109,16 @@
     }        
 }
 
-
-
-@code {
+@code{
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }
-    private List<UserModel> users = new();
-    private UserModel user = new();
-    private ContractModel contract = new();
+    private tbContract contract = new();
+    private tbUser user = new();
     private List<PropertyInfo> properties = new();
     private bool disabled;
     Variant variant = Variant.Outlined;
+
+    //[Parameter] public int ctrId { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -128,8 +132,8 @@
             disabled = true;
         }
 
-        this.user = await _dbu.GetUser(authState.User.Identity.Name);
-        this.contract = await _dbc.GetUserContract(user.ContractId);
+        this.user = dbService.GetUser(authState.User.Identity.Name);
+        this.contract = dbService.GetContract(this.user.Contract.Id);
     }
 
     private async Task Save()
@@ -143,29 +147,29 @@
             validation.Validate(this.contract.BreakStart);
             validation.Validate(this.contract.BreakEnd);
             this.contract.LastChanged = DateTime.Now.ToString("MM.dd.yyyy HH:mm:ss");
-            await _dbc.EditContract(this.contract);
+            this.dbService.EditContract(contract);
+            //await _dbc.EditContract(this.contract);
         }
         catch (Exception)
         {
-            NotificationMessage errorMessage = new NotificationMessage 
-            {
-                Severity = NotificationSeverity.Error, 
-                Summary = "Error", 
-                 
-                Duration = 4000 
+            NotificationMessage errorMessage = new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Summary = "Error",
 
-            };
+                    Duration = 4000
+
+                };
             service.Notify(errorMessage);
             return;
         }
         NotificationMessage goodMessage = new NotificationMessage
-        {
-            Severity = NotificationSeverity.Success,
-            Summary = "Approved",
-            Detail = "Saved",
-            Duration = 4000
-        };
+            {
+                Severity = NotificationSeverity.Success,
+                Summary = "Approved",
+                Detail = "Saved",
+                Duration = 4000
+            };
         service.Notify(goodMessage);
     }
-
 }

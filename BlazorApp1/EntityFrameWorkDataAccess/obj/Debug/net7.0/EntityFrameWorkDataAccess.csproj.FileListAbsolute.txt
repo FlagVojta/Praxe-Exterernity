@@ -1,0 +1,14 @@
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\EntityFrameWorkDataAccess\bin\Debug\net7.0\EntityFrameWorkDataAccess.deps.json
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\EntityFrameWorkDataAccess\bin\Debug\net7.0\EntityFrameWorkDataAccess.runtimeconfig.json
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\EntityFrameWorkDataAccess\bin\Debug\net7.0\EntityFrameWorkDataAccess.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\EntityFrameWorkDataAccess\bin\Debug\net7.0\EntityFrameWorkDataAccess.pdb
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\EntityFrameWorkDataAccess\obj\Debug\net7.0\EntityFrameWorkDataAccess.csproj.AssemblyReference.cache
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\EntityFrameWorkDataAccess\obj\Debug\net7.0\EntityFrameWorkDataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\EntityFrameWorkDataAccess\obj\Debug\net7.0\EntityFrameWorkDataAccess.AssemblyInfoInputs.cache
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\EntityFrameWorkDataAccess\obj\Debug\net7.0\EntityFrameWorkDataAccess.AssemblyInfo.cs
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\EntityFrameWorkDataAccess\obj\Debug\net7.0\EntityFrameWorkDataAccess.csproj.CoreCompileInputs.cache
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\EntityFrameWorkDataAccess\obj\Debug\net7.0\EntityFrameWorkDataAccess.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\EntityFrameWorkDataAccess\obj\Debug\net7.0\refint\EntityFrameWorkDataAccess.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\EntityFrameWorkDataAccess\obj\Debug\net7.0\EntityFrameWorkDataAccess.pdb
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\EntityFrameWorkDataAccess\obj\Debug\net7.0\EntityFrameWorkDataAccess.genruntimeconfig.cache
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\BlazorApp1\EntityFrameWorkDataAccess\obj\Debug\net7.0\ref\EntityFrameWorkDataAccess.dll

@@ -1,22 +1,24 @@
 ﻿@attribute [Authorize(Roles = "Administrator")]
 @page "/ContractList"
-@using DataAccessLibrary.Interfaces;
-@using DataAccessLibrary.Models;
+@using DataAccessLibrary.Interfaces
+@using DataAccessLibrary.Models
 @inject IContractData _dbc
 @inject IUserData _dbu
 @inject NavigationManager navMan
 @using System.Reflection;
-@*<RadzenDataGrid Data="@this.users" TItem="UserModel" AllowVirtualization="true" Style="height:700px"
+<RadzenDataGrid Data="@this.users"
+  TItem="tbUser" AllowVirtualization="true" Style="height:700px"
                 AllowFiltering="false" FilterPopupRenderMode="PopupRenderMode.OnDemand" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" LogicalFilterOperator="LogicalFilterOperator.Or"
                 AllowSorting="false">
     <Columns>
-        <RadzenDataGridColumn TItem="UserModel" Property="" Title="Název Organizace" />
-        <RadzenDataGridColumn TItem="UserModel" Property="City" Title="Město" />
-        <RadzenDataGridColumn TItem="UserModel" Property="Name" Title="Jméno žáka" />
-        <RadzenDataGridColumn TItem="UserModel" Property="LastName" Title="Příjmení žáka" />
-        <RadzenDataGridColumn TItem="UserModel" Property="LastChanged" Title="Datum Poslední úpravy" />  
+        <RadzenDataGridColumn TItem="tbUser"  Property=""  Title="Název Organizace" />
+
+        <RadzenDataGridColumn TItem="tbUser" Property="City" Title="Město" />
+        <RadzenDataGridColumn TItem="tbUser" Property="Name" Title="Jméno žáka" />
+        <RadzenDataGridColumn TItem="tbUser" Property="LastName" Title="Příjmení žáka" />
+        <RadzenDataGridColumn TItem="tbUser" Property="LastChanged" Title="Datum Poslední úpravy" />  
     </Columns>
-</RadzenDataGrid>*@
+</RadzenDataGrid>
 @*<table class="table table-primary">
     <tr style="gap : 20px">
         <th>Název Organizace</th>
@@ -55,19 +57,19 @@
     <tbody class="table-group-divider">
         @if (contracts != null)
         {
-            @foreach (var item in contracts)
+            @foreach (ContractModel item in contracts)
             {
                 <tr>
                     @if (users != null && contract != null)
                     {
-                        ContractModel model = new();
-                        model = EditContract(item);
-                        <td>@model.OrgName</td>
-                        <td>@model.City</td>
-                        <td>@users.Where(value => value.ContractId == model.Id && value.Type != "Administrator").Single().Name</td>
-                        <td>@users.Where(value => value.ContractId == model.Id && value.Type != "Administrator").Single().LastName</td>
-                        <td>@model.LastChanged</td>
-                        <td><button class="btn btn-outline-primary" @onclick=@(args => ShowContract(model.Id))><i class="bi bi-eye"></i></button></td>
+                        //ContractModel model = new();
+                        //model = EditContract(item);
+                        <td>@item.OrgName</td>
+                        <td>@item.City</td>
+                        <td>@users.Where(value => value.ContractId == item.Id && value.Type != "Administrator").Single().Name</td>
+                        <td>@users.Where(value => value.ContractId == item.Id && value.Type != "Administrator").Single().LastName</td>
+                        <td>@item.LastChanged</td>
+                        <td><button class="btn btn-outline-primary" @onclick=@(args => ShowContract(item.Id))><i class="bi bi-eye"></i></button></td>
                     }
                 </tr>
             }
@@ -85,7 +87,7 @@
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }
     List<ContractModel> contracts;
-    IEnumerable<UserModel> users;
+    IEnumerable<tbUser> users;
     ContractModel contract = new();
 
     protected override async Task OnInitializedAsync()
@@ -98,7 +100,7 @@
     private async Task ShowContract(int ContractId)
     {
         var authState = await authenticationState;
-        UserModel user = users.Where(user => user.Login == authState.User.Identity.Name).Single();
+        tbUser user = users.Where(user => user.Login == authState.User.Identity.Name).Single();
         user.ContractId = ContractId;
         await _dbu.EditUser(user);
         navMan.NavigateTo("/contract", true);
@@ -110,20 +112,11 @@
         PropertyInfo[] properties = contractType.GetProperties();
 
         foreach (PropertyInfo property in properties)
-        {
-            try
+        {     
+            if (property.GetValue(contract)! == "" || property.GetValue(contract) == null)
             {
-                if (property.GetValue(contract).ToString() == "" || property.GetValue(contract) == null)
-                {
-                    property.SetValue(contract, "Neupraveno");
-                }
-            }
-            catch (Exception)
-            {
-
                 property.SetValue(contract, "Neupraveno");
-            }
-            
+            }          
         }
         return contract;
     }

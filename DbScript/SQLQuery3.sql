@@ -2,7 +2,6 @@ use dbPraxe
 go
 
 
-insert into tbUser(Type,Login,Password,Name,LastName) values('User','Medvidek','jaros','Medvidek','Jaros')
 insert into tbUser(Type,Login,Password,Name,LastName) values('User','Prase','jaros','Prase','pig')
 insert into tbUser(Type,Login,Password,Name,LastName) values('User','Osel','jaros','Osel','Jaros')
 insert into tbUser(Type,Login,Password,Name,LastName) values('User','Tygr','jaros','Tygr','Jaros')

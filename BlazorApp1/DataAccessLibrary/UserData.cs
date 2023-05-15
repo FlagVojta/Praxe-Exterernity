@@ -17,21 +17,21 @@ namespace DataAccessLibrary
             this._da = da;
         }
 
-        public Task<List<UserModel>> GetUsers()
+        public Task<List<tbUser>> GetUsers()
         {
             string sql = "select * from dbo.tbUser";
 
-            return _da.LoadData<UserModel, dynamic>(sql, new { });
+            return _da.LoadData<tbUser, dynamic>(sql, new { });
         }
 
-        public Task<UserModel> GetUser(string Login)
+        public Task<tbUser> GetUser(string Login)
         {
             string sql = $"select * from dbo.tbUser where Login = '{Login}'";
 
-            return _da.LoadOne<UserModel,dynamic>(sql,Login);
+            return _da.LoadOne<tbUser,dynamic>(sql,Login);
         }
 
-        public Task EditUser(UserModel user)
+        public Task EditUser(tbUser user)
         {
             string sql = $"update dbo.tbUser set ContractId = {user.ContractId} where Id = {user.Id}";
             

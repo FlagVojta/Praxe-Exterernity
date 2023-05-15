@@ -33,7 +33,7 @@ CREATE TABLE tbContract(
   WorkEnd varchar(30) default (''),
   BreakStart varchar(30) default (''),
   BreakEnd varchar(30) default (''),
-  LastChanged datetime default ('')
+  LastChanged datetime default null
 )
 
 go
