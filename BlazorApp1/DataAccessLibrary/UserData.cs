@@ -31,5 +31,11 @@ namespace DataAccessLibrary
             return _da.LoadOne<UserModel,dynamic>(sql,Login);
         }
 
+        public Task EditUser(UserModel user)
+        {
+            string sql = $"update dbo.tbUser set ContractId = {user.ContractId} where Id = {user.Id}";
+            
+            return _da.SaveData(sql, user);
+        }
     }
 }

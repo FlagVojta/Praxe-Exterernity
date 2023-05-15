@@ -1,4 +1,5 @@
 ﻿using DataAccessLibrary.Models;
+using System.Diagnostics.Contracts;
 
 namespace DataAccessLibrary.Interfaces
 {
@@ -7,5 +8,7 @@ namespace DataAccessLibrary.Interfaces
         Task<List<UserModel>> GetUsers();
 
         Task<UserModel> GetUser(string login);
+
+        public Task EditUser(UserModel user);
     }
 }

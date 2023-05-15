@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Data.SqlClient;
 using Radzen;
-using Syncfusion.Blazor;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +22,7 @@ builder.Services.AddTransient<IContractData, ContractData>();
 builder.Services.AddScoped<ProtectedSessionStorage>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthentication>();
 builder.Services.AddScoped<NotificationService>();
-builder.Services.AddSyncfusionBlazor();
+
 
 var app = builder.Build();
 

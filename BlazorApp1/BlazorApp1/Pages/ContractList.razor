@@ -1,12 +1,10 @@
 ﻿@attribute [Authorize(Roles = "Administrator")]
 @page "/ContractList"
-
 @using DataAccessLibrary.Interfaces;
 @using DataAccessLibrary.Models;
-@using Syncfusion.Blazor.Grids
 @inject IContractData _dbc
 @inject IUserData _dbu
-
+@inject NavigationManager navMan
 
 @*<RadzenDataGrid Data="@this.users" TItem="UserModel" AllowVirtualization="true" Style="height:700px"
                 AllowFiltering="false" FilterPopupRenderMode="PopupRenderMode.OnDemand" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" LogicalFilterOperator="LogicalFilterOperator.Or"
@@ -16,12 +14,10 @@
         <RadzenDataGridColumn TItem="UserModel" Property="City" Title="Město" />
         <RadzenDataGridColumn TItem="UserModel" Property="Name" Title="Jméno žáka" />
         <RadzenDataGridColumn TItem="UserModel" Property="LastName" Title="Příjmení žáka" />
-        <RadzenDataGridColumn TItem="UserModel" Property="LastChanged" Title="Datum Poslední úpravy" />
-        
+        <RadzenDataGridColumn TItem="UserModel" Property="LastChanged" Title="Datum Poslední úpravy" />  
     </Columns>
 </RadzenDataGrid>*@
-
-<table>
+@*<table class="table table-primary">
     <tr style="gap : 20px">
         <th>Název Organizace</th>
         <th>Město</th>
@@ -42,28 +38,50 @@
                     <td>@users.Where(value => value.ContractId == item.Id).Single().LastName</td>
                     <td>@item.LastChanged</td>
                 }
-
             </tr>
         }
-
-    }
+    }*@
+@*</table>*@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Název Firmy</th>
+            <th scope="col">Město</th>
+            <th scope="col">Jméno žáka</th>
+            <th scope="col">Příjmení žáka</th>
+            <th scope="col">Poslední změna</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        @if (contracts != null)
+        {
+            @foreach (var item in contracts)
+            {
+                <tr>
+                    @if (users != null && contract != null)
+                    {
+                        <td>@item.OrgName</td>
+                        <td>@item.City</td>
+                        <td>@users.Where(value => value.ContractId == item.Id && value.Type != "Administrator").Single().Name</td>
+                        <td>@users.Where(value => value.ContractId == item.Id && value.Type != "Administrator").Single().LastName</td>
+                        <td>@item.LastChanged</td>
+                        <td><button @onclick=@(args => Edit(item.Id))><i class="bi bi-eye"></i></button></td>
+                    }
+                </tr>
+            }
+        }
+    </tbody>
 </table>
-
 @*<SfGrid DataSource="@users">
     <GridColumns>
         <GridColumn Field="@nameof(UserModel.Name)" HeaderText="Jméno"></GridColumn>
         <GridColumn Field="@nameof(UserModel.LastName)" HeaderText="Příjmení"></GridColumn>
-
         <GridForeignColumn Field="@nameof(UserModel.ContractId)" HeaderText="Test" ForeignDataSource="@contracts" ForeignKeyValue="OrgName"></GridForeignColumn>
-    </GridColumns>
-    
+    </GridColumns>   
 </SfGrid>*@
-    
-
-
-
 @code {
-    [Parameter] public int ContractId { get; set; }
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
     List<ContractModel> contracts;
     IEnumerable<UserModel> users;
     ContractModel contract = new();
@@ -71,10 +89,16 @@
     protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
-        
         contracts = await _dbc.GetContracts();
         this.users = await _dbu.GetUsers();     
+    }
 
-        
-    } 
+    private async Task Edit(int ContractId)
+    {
+        var authState = await authenticationState;
+        UserModel user = users.Where(user => user.Login == authState.User.Identity.Name).Single();
+        user.ContractId = ContractId;
+        await _dbu.EditUser(user);
+        navMan.NavigateTo("/contract", true);
+    }
 }

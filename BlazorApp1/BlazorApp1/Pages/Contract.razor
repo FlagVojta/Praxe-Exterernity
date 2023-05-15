@@ -1,8 +1,9 @@
-﻿@attribute [Authorize(Roles = "User")]
+﻿@attribute [Authorize(Roles = "User,Administrator")]
 @page "/contract"
 @inject IUserData _dbu
 @inject IContractData _dbc
 @inject NotificationService service
+@inject NavigationManager navMan
 @using DataAccessLibrary;
 @using DataAccessLibrary.Models
 @using DataAccessLibrary.Interfaces
@@ -28,79 +29,74 @@
             <RadzenStack>
 
                 <RadzenFormField Text="Název Organizace">
-                    <RadzenTextBox @bind-Value="@this.contract.OrgName"></RadzenTextBox>
+                    <RadzenTextBox Disabled=@disabled @bind-Value="@this.contract.OrgName"></RadzenTextBox>
                 </RadzenFormField>
                 <RadzenFormField Text="Zapsaná">
-                    <RadzenTextBox @bind-Value="@this.contract.Registred"></RadzenTextBox>
+                    <RadzenTextBox Disabled=@disabled @bind-Value="@this.contract.Registred"></RadzenTextBox>
                 </RadzenFormField>
                 <RadzenFormField Text="Sídlo">
-                    <RadzenTextBox @bind-Value="@this.contract.Based"></RadzenTextBox>
+                    <RadzenTextBox Disabled=@disabled @bind-Value="@this.contract.Based"></RadzenTextBox>
                 </RadzenFormField>
                 <RadzenFormField Text="IČO">
-                    <RadzenTextBox @bind-Value="@this.contract.ICO"></RadzenTextBox>
+                    <RadzenTextBox Disabled=@disabled @bind-Value="@this.contract.ICO"></RadzenTextBox>
                 </RadzenFormField>
                 <RadzenFormField Text="Zastoupená">
-                    <RadzenTextBox @bind-Value="@this.contract.RepresentedBy"></RadzenTextBox>
+                    <RadzenTextBox Disabled=@disabled @bind-Value="@this.contract.RepresentedBy"></RadzenTextBox>
                 </RadzenFormField>
             </RadzenStack>
             <br>
             <h4>Místo výkonu Praxe</h4>
-            <RadzenStack>
-                        
+            <RadzenStack>                  
                 <RadzenFormField Text="Ulice a číslo">
-                    <RadzenTextBox @bind-Value="@this.contract.StreetANumber"></RadzenTextBox>
+                    <RadzenTextBox Disabled=@disabled @bind-Value="@this.contract.StreetANumber"></RadzenTextBox>
                 </RadzenFormField>
                 <RadzenFormField Text="Město">
-                    <RadzenTextBox @bind-Value="@this.contract.City"></RadzenTextBox>
+                    <RadzenTextBox Disabled=@disabled @bind-Value="@this.contract.City"></RadzenTextBox>
                 </RadzenFormField>
                 <RadzenFormField Text="PSČ">
-                    <RadzenTextBox @bind-Value="@this.contract.PSC"></RadzenTextBox>
+                    <RadzenTextBox Disabled=@disabled @bind-Value="@this.contract.PSC"></RadzenTextBox>
                 </RadzenFormField>
             </RadzenStack>
             <br>
             <h4>Pověřená Osoba</h4>
-            <RadzenStack>
-                        
+            <RadzenStack>                     
                 <RadzenFormField Text="Jméno">
-                    <RadzenTextBox @bind-Value="@this.contract.FirstName"></RadzenTextBox>
+                    <RadzenTextBox Disabled=@disabled @bind-Value="@this.contract.FirstName"></RadzenTextBox>
                 </RadzenFormField>
                 <RadzenFormField Text="Příjmení">
-                    <RadzenTextBox @bind-Value="@this.contract.LastName"></RadzenTextBox>
+                    <RadzenTextBox Disabled=@disabled @bind-Value="@this.contract.LastName"></RadzenTextBox>
                 </RadzenFormField>
                 <RadzenFormField Text="Telefon">
-                    <RadzenTextBox @bind-Value="@this.contract.MobileNumber"></RadzenTextBox>
+                    <RadzenTextBox Disabled=@disabled @bind-Value="@this.contract.MobileNumber"></RadzenTextBox>
                 </RadzenFormField>
             </RadzenStack>
             <br>
             <h4>Druh činností, které bude žák vykonávat</h4>
             <RadzenStack>
                 <RadzenFormField Text="Popis práce" Variant="@variant">
-                    <RadzenTextArea @bind-Value="@this.contract.WorkDescription" />
+                    <RadzenTextArea Disabled=@disabled @bind-Value="@this.contract.WorkDescription" />
                 </RadzenFormField>
             </RadzenStack>
             <br>
-
             <h4>Časový rozvrh</h4>
             <h5>Pracovní doba</h5>
             <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.5rem" Class="rz-p-4 rz-mb-6 rz-border-radius-1" Style="border: var(--rz-grid-cell-border);">
                 <RadzenFormField Text="Od">
-                    <RadzenTextBox @bind-Value="@this.contract.WorkStart"></RadzenTextBox>
+                    <RadzenTextBox Disabled=@disabled @bind-Value="@this.contract.WorkStart"></RadzenTextBox>
                 </RadzenFormField>
                 <RadzenFormField Text="Do">
-                    <RadzenTextBox @bind-Value="@this.contract.WorkEnd"></RadzenTextBox>
+                    <RadzenTextBox Disabled=@disabled @bind-Value="@this.contract.WorkEnd"></RadzenTextBox>
                 </RadzenFormField>
-            </RadzenStack>
-                
+            </RadzenStack> 
             <h5>Přestávka</h5>
             <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0.5rem" Class="rz-p-4 rz-mb-6 rz-border-radius-1" Style="border: var(--rz-grid-cell-border);">
                 <RadzenFormField Text="Od">
-                    <RadzenTextBox @bind-Value="@this.contract.BreakStart"></RadzenTextBox>
+                    <RadzenTextBox Disabled=@disabled @bind-Value="@this.contract.BreakStart"></RadzenTextBox>
                 </RadzenFormField>
                 <RadzenFormField Text="Do">
-                    <RadzenTextBox @bind-Value="@this.contract.BreakEnd"></RadzenTextBox>
+                    <RadzenTextBox Disabled=@disabled @bind-Value="@this.contract.BreakEnd"></RadzenTextBox>
                 </RadzenFormField>
-            </RadzenStack>
-                
+            </RadzenStack>  
             <br>
             <RadzenButton Click=@Save Text="Save" ButtonStyle="ButtonStyle.Primary" />
         </div>
@@ -117,15 +113,23 @@
     private UserModel user = new();
     private ContractModel contract = new();
     private List<PropertyInfo> properties = new();
+    private bool disabled;
     Variant variant = Variant.Outlined;
 
     protected override async Task OnInitializedAsync()
     {
+
         base.OnInitialized();
 
         var authState = await authenticationState;
 
+        if (authState.User.IsInRole("Administrator"))
+        {
+            disabled = true;
+        }
+
         this.user = await _dbu.GetUser(authState.User.Identity.Name);
+
 
         this.contract = await _dbc.GetUserContract(user.ContractId);
 
@@ -145,26 +149,26 @@
         }
         catch (Exception)
         {
-            NotificationMessage Errormessage = new NotificationMessage 
+            NotificationMessage errorMessage = new NotificationMessage 
             {
                 Severity = NotificationSeverity.Error, 
                 Summary = "Error", 
                 Detail = "Incorrect Date Format HH:mm", 
                 Duration = 4000 
             };
-            service.Notify(Errormessage);
+            service.Notify(errorMessage);
             return;
         }
         this.contract.LastChanged = DateTime.Now;
         await _dbc.EditContract(this.contract);
-        NotificationMessage Goodmessage = new NotificationMessage
+        NotificationMessage goodMessage = new NotificationMessage
         {
             Severity = NotificationSeverity.Success,
             Summary = "Approved",
             Detail = "Saved",
             Duration = 4000
         };
-        service.Notify(Goodmessage);
+        service.Notify(goodMessage);
 
 
     }
