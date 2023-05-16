@@ -1,0 +1,71 @@
+﻿@layout LoginLayout
+@page "/"
+@using BlazorApp1.Authentication;
+@using DataAccessLibrary.Interfaces;
+@using DataAccessLibrary.Models;
+@using EntityFrameWorkDataAccess;
+@using EntityFrameWorkDataAccess.Models;
+@inject NotificationService service
+@inject DatabaseService dbService
+@inject IJSRuntime js;
+@inject IUserData _db;
+@inject AuthenticationStateProvider authStateProvider;
+@inject NavigationManager navManager;
+
+<RadzenCard class="rz-my-12 rz-mx-auto rz-p-2 rz-p-md-8" style="max-width: 400px; position:center">
+    <RadzenStack Gap="2rem">
+    <RadzenFormField Text="Username">
+        <RadzenTextBox @bind-Value="@model.Login" />
+    </RadzenFormField>
+    <RadzenFormField Text="Password">
+        <RadzenPassword  @bind-Value="@model.Password" />
+    </RadzenFormField>
+        <RadzenButton Click=@Authenticate Text="Login" ButtonStyle="ButtonStyle.Primary" />
+    </RadzenStack>
+</RadzenCard>
+<RadzenNotification />
+
+@code {
+    private class Model
+    {
+        public string Login{ get; set; }
+        public string Password { get; set; }
+    }
+    List<tbUser> users = new();
+    //UserModel user = new();
+    private Model model = new();
+
+    private async Task Authenticate()
+    {
+        users = dbService.GetUsers();
+        tbUser? user = users.FirstOrDefault(item => item.Login == model.Login);
+
+        if (user == null || user.Password != model.Password)
+        {
+            NotificationMessage message = new NotificationMessage 
+            { 
+                Severity = NotificationSeverity.Error, 
+                Summary = "Error", 
+                Detail = "Incorrect Username or Password", 
+                Duration = 4000 
+            };
+            service.Notify(message);
+            return;
+        }
+        var customAuthProvider = (CustomAuthentication)authStateProvider;
+
+        await customAuthProvider.UpdateAuthenticationState(new UserSession
+        {
+            Login = user.Login,
+            Role = user.Type,
+
+        });
+        if (user.Type == "Administrator")
+        {
+            navManager.NavigateTo("/ContractList", true);
+            return;
+        }
+        navManager.NavigateTo("/Contract", true);
+        
+    }
+}

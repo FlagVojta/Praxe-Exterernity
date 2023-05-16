@@ -1,0 +1,32 @@
+﻿@page "/greetings"
+@inject IJSRuntime js;
+
+<PageTitle>Index</PageTitle>
+
+<AuthorizeView>
+    <Authorized>
+        <h1>Hello @context.User.Identity.Name!</h1>
+    </Authorized>
+    <NotAuthorized>
+        <h1 class="text text-center">Hello Guest</h1>
+    </NotAuthorized>
+</AuthorizeView>
+
+<AuthorizeView>
+    <Authorized>
+        <h1>Login Success</h1>
+    </Authorized>
+</AuthorizeView>
+
+@code {
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    public async Task DisplayHello()
+    {
+        var authState = await authenticationState;
+        var message = $"{authState.User.Identity.Name}";
+        await js.InvokeVoidAsync("alert", message);
+    }
+
+}

@@ -54,7 +54,7 @@ as
 		--		where Id = SCOPE_IDENTITY()
 		--		print 'Funguje to'
 		--	end
-		INSERT INTO tbContract (UserId)
+		INSERT INTO tbContract (tbUserId)
 		SELECT Id
 		FROM inserted
 		WHERE Type = 'User';
