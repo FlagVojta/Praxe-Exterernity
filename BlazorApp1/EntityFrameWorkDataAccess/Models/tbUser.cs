@@ -13,14 +13,10 @@ namespace EntityFrameWorkDataAccess.Models
     {
         [Key]
         public int Id { get; set; }
-        [ForeignKey("Id")]
-        public int ContractId { get; set; }
         public string Login { get; set; }
+        public string Type { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
-
-        [ForeignKey("Id")]
-        public tbContract Contract { get; set; }
     }
 }

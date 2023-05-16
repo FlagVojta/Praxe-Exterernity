@@ -15,7 +15,7 @@ namespace EntityFrameWorkDataAccess
         private IDbContextFactory<DemoDbContext> _dbContextFactory;
         public DatabaseService(IDbContextFactory<DemoDbContext> dbContextFactory)
         {
-           this._dbContextFactory = dbContextFactory;
+            this._dbContextFactory = dbContextFactory;
         }
         public void AddContract(tbContract contract)
         {
@@ -29,6 +29,13 @@ namespace EntityFrameWorkDataAccess
             using (var context = _dbContextFactory.CreateDbContext())
             {
                 return context.tbContract.ToList();
+            }
+        }
+        public List<tbUser> GetUsers()
+        {
+            using (var context = _dbContextFactory.CreateDbContext())
+            {
+                return context.tbUser.ToList();
             }
         }
         public tbUser GetUser(string UserLogin)
@@ -52,7 +59,6 @@ namespace EntityFrameWorkDataAccess
             using (var context = _dbContextFactory.CreateDbContext())
             {
                 tbContract dbContract = context.tbContract.Find(contract.Id);
-
                 dbContract.OrgName = contract.OrgName;
                 dbContract.RepresentedBy = contract.RepresentedBy;
                 dbContract.StreetANumber = contract.StreetANumber;
@@ -69,8 +75,7 @@ namespace EntityFrameWorkDataAccess
                 dbContract.WorkStart = contract.WorkStart;
                 dbContract.WorkEnd = contract.WorkEnd;
                 dbContract.Registred = contract.Registred;
-                dbContract.ICO = contract.ICO;
-                
+                dbContract.ICO = contract.ICO;               
             }
         }
 

@@ -3,7 +3,10 @@
 @using BlazorApp1.Authentication;
 @using DataAccessLibrary.Interfaces;
 @using DataAccessLibrary.Models;
+@using EntityFrameWorkDataAccess;
+@using EntityFrameWorkDataAccess.Models;
 @inject NotificationService service
+@inject DatabaseService dbService
 @inject IJSRuntime js;
 @inject IUserData _db;
 @inject AuthenticationStateProvider authStateProvider;
@@ -34,7 +37,7 @@
 
     private async Task Authenticate()
     {
-        users = await _db.GetUsers();
+        users = dbService.GetUsers();
         tbUser? user = users.FirstOrDefault(item => item.Login == model.Login);
 
         if (user == null || user.Password != model.Password)

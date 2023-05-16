@@ -7,16 +7,16 @@
 @inject NavigationManager navMan
 @using System.Reflection;
 <RadzenDataGrid Data="@this.users"
-  TItem="tbUser" AllowVirtualization="true" Style="height:700px"
+  TItem="UserModel" AllowVirtualization="true" Style="height:700px"
                 AllowFiltering="false" FilterPopupRenderMode="PopupRenderMode.OnDemand" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" LogicalFilterOperator="LogicalFilterOperator.Or"
                 AllowSorting="false">
     <Columns>
-        <RadzenDataGridColumn TItem="tbUser"  Property=""  Title="Název Organizace" />
+        <RadzenDataGridColumn TItem="UserModel"  Property=""  Title="Název Organizace" />
 
-        <RadzenDataGridColumn TItem="tbUser" Property="City" Title="Město" />
-        <RadzenDataGridColumn TItem="tbUser" Property="Name" Title="Jméno žáka" />
-        <RadzenDataGridColumn TItem="tbUser" Property="LastName" Title="Příjmení žáka" />
-        <RadzenDataGridColumn TItem="tbUser" Property="LastChanged" Title="Datum Poslední úpravy" />  
+        <RadzenDataGridColumn TItem="UserModel" Property="City" Title="Město" />
+        <RadzenDataGridColumn TItem="UserModel" Property="Name" Title="Jméno žáka" />
+        <RadzenDataGridColumn TItem="UserModel" Property="LastName" Title="Příjmení žáka" />
+        <RadzenDataGridColumn TItem="UserModel" Property="LastChanged" Title="Datum Poslední úpravy" />  
     </Columns>
 </RadzenDataGrid>
 @*<table class="table table-primary">
@@ -87,7 +87,7 @@
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }
     List<ContractModel> contracts;
-    IEnumerable<tbUser> users;
+    IEnumerable<UserModel> users;
     ContractModel contract = new();
 
     protected override async Task OnInitializedAsync()
@@ -100,7 +100,7 @@
     private async Task ShowContract(int ContractId)
     {
         var authState = await authenticationState;
-        tbUser user = users.Where(user => user.Login == authState.User.Identity.Name).Single();
+        UserModel user = users.Where(user => user.Login == authState.User.Identity.Name).Single();
         user.ContractId = ContractId;
         await _dbu.EditUser(user);
         navMan.NavigateTo("/contract", true);

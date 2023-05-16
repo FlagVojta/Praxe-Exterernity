@@ -5,10 +5,10 @@ namespace DataAccessLibrary.Interfaces
 {
     public interface IUserData
     {
-        Task<List<tbUser>> GetUsers();
+        Task<List<UserModel>> GetUsers();
 
-        Task<tbUser> GetUser(string login);
+        Task<UserModel> GetUser(string login);
 
-        public Task EditUser(tbUser user);
+        public Task EditUser(UserModel user);
     }
 }

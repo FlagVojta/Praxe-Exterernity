@@ -1,6 +1,7 @@
 create database dbPraxe
 go
 use dbPraxe
+go
 
 
 CREATE TABLE tbUser (
@@ -25,8 +26,8 @@ CREATE TABLE tbContract(
   StreetANumber varchar(100) default (''),
   City varchar(30) default (''),
   PSC varchar(30) default (''),
-  FirstName varchar(50) default (''),
-  LastName varchar(50) default (''),
+  RepresentedFirstName varchar(50) default (''),
+  RepresentedLastName varchar(50) default (''),
   MobileNumber varchar(20) default (''),
   WorkDescription varchar(2000) default (''),
   WorkStart varchar(30) default (''),
@@ -35,7 +36,6 @@ CREATE TABLE tbContract(
   BreakEnd varchar(30) default (''),
   LastChanged datetime default null
 )
-
 go
 ALTER TABLE tbUser ADD FOREIGN KEY (ContractId) REFERENCES tbContract (Id);
 go
@@ -44,18 +44,20 @@ on tbUser
 after insert
 as
 	begin
-		declare @type varchar(50)
-		set @type = (select Type from inserted)
-		if(@type = 'User')
-			begin
-				declare @ContractId int
-				DECLARE @UserId INT;
-				insert into tbContract default values
-				update tbUser 
-				set ContractId = SCOPE_IDENTITY()
-				where Id = (select Id from inserted)
-				print 'Funguje to'
-			end
+		--declare @type varchar(50)
+		--set @type = (select Type from inserted)
+		--if(@type = 'User')
+		--	begin
+		--		insert into tbContract default values
+		--		update tbContract 
+		--		set UserId = (select Id from inserted)
+		--		where Id = SCOPE_IDENTITY()
+		--		print 'Funguje to'
+		--	end
+		INSERT INTO tbContract (UserId)
+		SELECT Id
+		FROM inserted
+		WHERE Type = 'User';
 	end
 go
 

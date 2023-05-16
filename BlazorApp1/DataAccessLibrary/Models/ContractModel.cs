@@ -28,8 +28,8 @@ namespace DataAccessLibrary.Models
         }
     
         public string PSC { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string RepresentedFirstName { get; set; }
+        public string RepresentedLastName { get; set; }
         public string MobileNumber { get; set; }
         public string WorkDescription { get; set; }
         public string WorkStart { get; set; }

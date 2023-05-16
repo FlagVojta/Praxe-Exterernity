@@ -10,6 +10,7 @@
 
 @using DataAccessLibrary.Interfaces
 @using System.Reflection;
+@using DataAccessLibrary.Models;
 @using EntityFrameWorkDataAccess;
 @using EntityFrameWorkDataAccess.Models;
 
@@ -112,9 +113,8 @@
 @code{
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }
+    private List<tbContract> contracts = new();
     private tbContract contract = new();
-    private tbUser user = new();
-    private List<PropertyInfo> properties = new();
     private bool disabled;
     Variant variant = Variant.Outlined;
 
@@ -132,8 +132,12 @@
             disabled = true;
         }
 
-        this.user = dbService.GetUser(authState.User.Identity.Name);
-        this.contract = dbService.GetContract(this.user.Contract.Id);
+        //this.user = dbService.GetUser(authState.User.Identity.Name);
+
+        this.contracts = dbService.GetContracts();
+        this.contract = contracts.FirstOrDefault(item => item.tbUserId.Login == authState.User.Identity.Name);
+
+    //this.contract = dbService.GetContract(this.user.Contract.Id);
     }
 
     private async Task Save()
@@ -147,7 +151,7 @@
             validation.Validate(this.contract.BreakStart);
             validation.Validate(this.contract.BreakEnd);
             this.contract.LastChanged = DateTime.Now.ToString("MM.dd.yyyy HH:mm:ss");
-            this.dbService.EditContract(contract);
+            dbService.EditContract(contract);
             //await _dbc.EditContract(this.contract);
         }
         catch (Exception)
@@ -156,7 +160,6 @@
                 {
                     Severity = NotificationSeverity.Error,
                     Summary = "Error",
-
                     Duration = 4000
 
                 };
