@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp1", "BlazorApp1\Bl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLibrary", "DataAccessLibrary\DataAccessLibrary.csproj", "{727D2C27-C452-48E6-897B-7F3BBB7F357A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkLibrary", "EntityFrameworkLibrary\EntityFrameworkLibrary.csproj", "{98EC6D58-3B84-4D33-AB35-F750E4E130D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFrameworkLibrary", "EntityFrameworkLibrary\EntityFrameworkLibrary.csproj", "{98EC6D58-3B84-4D33-AB35-F750E4E130D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

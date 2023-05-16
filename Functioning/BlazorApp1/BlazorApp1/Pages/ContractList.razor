@@ -3,21 +3,31 @@
 @using DataAccessLibrary.Interfaces;
 @using DataAccessLibrary.Models;
 @using System.Reflection;
+@using EntityFrameWorkDataAccess.Models;
+@using EntityFrameWorkDataAccess;
+@inject DatabaseService dbService
 @inject IContractData _dbc
 @inject IUserData _dbu
 @inject NavigationManager navMan
 
-@*<RadzenDataGrid Data="@this.users" TItem="UserModel" AllowVirtualization="true" Style="height:700px"
+
+<RadzenDataGrid  Context="item" Data="@this.contracts" TItem="tbContract" AllowVirtualization="true" Style="height:800px"
                 AllowFiltering="false" FilterPopupRenderMode="PopupRenderMode.OnDemand" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" LogicalFilterOperator="LogicalFilterOperator.Or"
                 AllowSorting="false">
     <Columns>
-        <RadzenDataGridColumn TItem="UserModel" Property="" Title="Název Organizace" />
-        <RadzenDataGridColumn TItem="UserModel" Property="City" Title="Město" />
-        <RadzenDataGridColumn TItem="UserModel" Property="Name" Title="Jméno žáka" />
-        <RadzenDataGridColumn TItem="UserModel" Property="LastName" Title="Příjmení žáka" />
-        <RadzenDataGridColumn TItem="UserModel" Property="LastChanged" Title="Datum Poslední úpravy" />  
+        <RadzenDataGridColumn TItem="tbContract" Property="OrgName" Title="Název Organizace" />
+        <RadzenDataGridColumn TItem="tbContract" Property="City" Title="Město" />
+        <RadzenDataGridColumn TItem="tbContract" Property="item.tbUser.Name" Title="Jméno žáka" />
+        <RadzenDataGridColumn TItem="tbContract" Property="item.tbUser.LastName" Title="Příjmení žáka" />
+        <RadzenDataGridColumn TItem="tbContract" Property="LastChanged" Title="Datum Poslední úpravy" />  
+        <RadzenDataGridColumn TItem="tbContract" Context="item" Filterable="false" Sortable="false" TextAlign="TextAlign.Right" Width="156px">
+            <Template Context="item">
+                <RadzenButton Icon="edit" ButtonStyle="ButtonStyle.Light" Variant="Variant.Flat" Size="ButtonSize.Medium" Click="@(args => Edit(item.Id))">
+                </RadzenButton>
+            </Template>
+         </RadzenDataGridColumn>
     </Columns>
-</RadzenDataGrid>*@
+</RadzenDataGrid>
 @*<table class="table table-primary">
     <tr style="gap : 20px">
         <th>Název Organizace</th>
@@ -43,7 +53,7 @@
         }
     }*@
 @*</table>*@
-<table class="table table-hover">
+@*<table class="table table-hover">
     <thead>
         <tr>
             <th scope="col">Název Firmy</th>
@@ -74,7 +84,7 @@
             }
         }
     </tbody>
-</table>
+</table>*@
 @*<SfGrid DataSource="@users">
     <GridColumns>
         <GridColumn Field="@nameof(UserModel.Name)" HeaderText="Jméno"></GridColumn>
@@ -85,26 +95,20 @@
 @code {
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }
-    List<ContractModel> contracts;
-    IEnumerable<UserModel> users;
+    List<tbContract> contracts;
     ContractModel contract = new();
 
     protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
-        contracts = await _dbc.GetContracts();
-        this.users = await _dbu.GetUsers();     
-    }
+        contracts = dbService.GetContracts();
 
+    }
     private async Task Edit(int ContractId)
     {
         var authState = await authenticationState;
-        UserModel user = users.Where(user => user.Login == authState.User.Identity.Name).Single();
-        user.ContractId = ContractId;
-        await _dbu.EditUser(user);
-        navMan.NavigateTo("/contract", true);
+        navMan.NavigateTo($"/contract/{ContractId}", true);
     }
-
     private ContractModel EditContract(ContractModel contract)
     {
         Type contractType = typeof(ContractModel);

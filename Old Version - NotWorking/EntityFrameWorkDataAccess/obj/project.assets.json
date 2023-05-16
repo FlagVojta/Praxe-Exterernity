@@ -3468,11 +3468,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\BlazorApp1\\EntityFrameWorkDataAccess\\EntityFrameWorkDataAccess.csproj",
+      "projectUniqueName": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Old Version - NotWorking\\EntityFrameWorkDataAccess\\EntityFrameWorkDataAccess.csproj",
       "projectName": "EntityFrameWorkDataAccess",
-      "projectPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\BlazorApp1\\EntityFrameWorkDataAccess\\EntityFrameWorkDataAccess.csproj",
+      "projectPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Old Version - NotWorking\\EntityFrameWorkDataAccess\\EntityFrameWorkDataAccess.csproj",
       "packagesPath": "C:\\Users\\exter\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\BlazorApp1\\EntityFrameWorkDataAccess\\obj\\",
+      "outputPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Old Version - NotWorking\\EntityFrameWorkDataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\exter\\AppData\\Roaming\\NuGet\\NuGet.Config",

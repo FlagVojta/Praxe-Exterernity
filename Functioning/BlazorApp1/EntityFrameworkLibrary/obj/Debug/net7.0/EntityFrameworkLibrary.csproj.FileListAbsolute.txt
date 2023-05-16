@@ -12,3 +12,17 @@ C:\Users\exter\Desktop\Praxe-Exterernity-2ac50f13f51b863fa0ac58743755744c5201394
 C:\Users\exter\Desktop\Praxe-Exterernity-2ac50f13f51b863fa0ac58743755744c52013944\BlazorApp1\EntityFrameworkLibrary\obj\Debug\net7.0\EntityFrameworkLibrary.pdb
 C:\Users\exter\Desktop\Praxe-Exterernity-2ac50f13f51b863fa0ac58743755744c52013944\BlazorApp1\EntityFrameworkLibrary\obj\Debug\net7.0\EntityFrameworkLibrary.genruntimeconfig.cache
 C:\Users\exter\Desktop\Praxe-Exterernity-2ac50f13f51b863fa0ac58743755744c52013944\BlazorApp1\EntityFrameworkLibrary\obj\Debug\net7.0\ref\EntityFrameworkLibrary.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\EntityFrameworkLibrary\bin\Debug\net7.0\EntityFrameworkLibrary.deps.json
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\EntityFrameworkLibrary\bin\Debug\net7.0\EntityFrameworkLibrary.runtimeconfig.json
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\EntityFrameworkLibrary\bin\Debug\net7.0\EntityFrameworkLibrary.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\EntityFrameworkLibrary\bin\Debug\net7.0\EntityFrameworkLibrary.pdb
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\EntityFrameworkLibrary\obj\Debug\net7.0\EntityFrameworkLibrary.csproj.AssemblyReference.cache
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\EntityFrameworkLibrary\obj\Debug\net7.0\EntityFrameworkLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\EntityFrameworkLibrary\obj\Debug\net7.0\EntityFrameworkLibrary.AssemblyInfoInputs.cache
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\EntityFrameworkLibrary\obj\Debug\net7.0\EntityFrameworkLibrary.AssemblyInfo.cs
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\EntityFrameworkLibrary\obj\Debug\net7.0\EntityFrameworkLibrary.csproj.CoreCompileInputs.cache
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\EntityFrameworkLibrary\obj\Debug\net7.0\EntityFrameworkLibrary.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\EntityFrameworkLibrary\obj\Debug\net7.0\refint\EntityFrameworkLibrary.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\EntityFrameworkLibrary\obj\Debug\net7.0\EntityFrameworkLibrary.pdb
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\EntityFrameworkLibrary\obj\Debug\net7.0\EntityFrameworkLibrary.genruntimeconfig.cache
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\EntityFrameworkLibrary\obj\Debug\net7.0\ref\EntityFrameworkLibrary.dll

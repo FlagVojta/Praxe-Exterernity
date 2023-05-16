@@ -3,7 +3,10 @@
 @using BlazorApp1.Authentication;
 @using DataAccessLibrary.Interfaces;
 @using DataAccessLibrary.Models;
+@using EntityFrameWorkDataAccess.Models;
+@using EntityFrameWorkDataAccess;
 @inject NotificationService service
+@inject DatabaseService dbService
 @inject IJSRuntime js;
 @inject IUserData _db;
 @inject AuthenticationStateProvider authStateProvider;
@@ -23,19 +26,21 @@
 <RadzenNotification />
 
 @code {
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
     private class Model
     {
         public string Login{ get; set; }
         public string Password { get; set; }
     }
-    List<UserModel> users = new();
+    List<tbUser> users = new();
     //UserModel user = new();
     private Model model = new();
 
     private async Task Authenticate()
     {
-        users = await _db.GetUsers();
-        UserModel? user = users.FirstOrDefault(item => item.Login == model.Login);
+        users = dbService.GetUsers();
+        tbUser? user = users.FirstOrDefault(item => item.Login == model.Login);
 
         if (user == null || user.Password != model.Password)
         {
@@ -55,14 +60,20 @@
         {
             Login = user.Login,
             Role = user.Type,
-
         });
+
         if (user.Type == "Administrator")
         {
             navManager.NavigateTo("/ContractList", true);
             return;
         }
-        navManager.NavigateTo("/Contract", true);
-        
+
+        await this.Navigate(user);
+    }
+
+    public async Task Navigate(tbUser user)
+    {
+        tbContract contract = dbService.GetContracts().FirstOrDefault(item => item.tbUser.Login == user.Login);
+        navManager.NavigateTo($"/Contract/{contract.Id}", true);
     }
 }

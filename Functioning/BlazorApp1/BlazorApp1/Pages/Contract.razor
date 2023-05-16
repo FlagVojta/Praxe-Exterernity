@@ -1,5 +1,5 @@
 ﻿@attribute [Authorize(Roles = "User,Administrator")]
-@page "/contract"
+@page "/contract/{contractId:int}"
 @inject IUserData _dbu
 @inject IContractData _dbc
 @inject NotificationService service
@@ -12,10 +12,7 @@
 @using EntityFrameWorkDataAccess;
 @using EntityFrameWorkDataAccess.Models;
 
-
-
 <PageTitle>Contract</PageTitle>
-
 <h1>Smlouva</h1>
 @{
     @if (this.contract == null)
@@ -24,13 +21,17 @@
             <RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
         </div>
     }
+    else if (authenticated == false)
+    {
+        <h1>You dont have permission to this Contract</h1>
+    }
     else
     {
         <div class="rz-p-0 rz-p-md-12">
            
             <h4>Firma</h4>
             <RadzenStack>
-
+                
                 <RadzenFormField Text="Název Organizace">
                     <RadzenTextBox Disabled=@disabled @bind-Value="@this.contract.OrgName"></RadzenTextBox>
                 </RadzenFormField>
@@ -101,39 +102,31 @@
                 </RadzenFormField>
             </RadzenStack>  
             <br>
-            <RadzenButton Click=@Save Text="Save" ButtonStyle="ButtonStyle.Primary" />
+            <RadzenButton Disabled="@disabled" Click=@Save Text="Save" ButtonStyle="ButtonStyle.Primary" />
         </div>
         <RadzenNotification></RadzenNotification>
     }        
 }
-
-
-
 @code {
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }
     private tbContract contract = new();
     private bool disabled;
+    private bool authenticated = true;
     Variant variant = Variant.Outlined;
+
+    [Parameter] 
+    public int contractId { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-
         base.OnInitialized();
-
-        var authState = await authenticationState;
-
-        if (authState.User.IsInRole("Administrator"))
-        {
-            disabled = true;
-        }
-        this.contract = dbService.GetContracts().FirstOrDefault(item => item.tbUser.Login == authState.User.Identity.Name);
+        this.contract = dbService.GetContract(contractId);
+        await this.AuthenticateUser(contract);
     }
-
     private async Task Save()
     {
         FormatValidation validation = new();
-
         try
         {
             validation.Validate(this.contract.WorkStart);
@@ -155,7 +148,6 @@
             service.Notify(errorMessage);
             return;
         }
-
         dbService.EditContract(contract);
         NotificationMessage goodMessage = new NotificationMessage
         {
@@ -165,6 +157,19 @@
             Duration = 4000
         };
         service.Notify(goodMessage);
+    }
+    public async Task AuthenticateUser(tbContract con)
+    {
+        var authState = await authenticationState;
+
+        if (con.tbUser.Login != authState.User.Identity.Name && authState.User.IsInRole("User"))
+        {
+            this.authenticated = false;
+        }
+        if (authState.User.IsInRole("Administrator"))
+        {
+            disabled = true;
+        }
     }
 
 }

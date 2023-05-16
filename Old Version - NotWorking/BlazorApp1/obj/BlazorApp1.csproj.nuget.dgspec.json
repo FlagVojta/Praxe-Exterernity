@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj": {}
+    "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Old Version - NotWorking\\BlazorApp1\\BlazorApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj": {
+    "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Old Version - NotWorking\\BlazorApp1\\BlazorApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj",
+        "projectUniqueName": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Old Version - NotWorking\\BlazorApp1\\BlazorApp1.csproj",
         "projectName": "BlazorApp1",
-        "projectPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj",
+        "projectPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Old Version - NotWorking\\BlazorApp1\\BlazorApp1.csproj",
         "packagesPath": "C:\\Users\\exter\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\BlazorApp1\\BlazorApp1\\obj\\",
+        "outputPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Old Version - NotWorking\\BlazorApp1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\exter\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,11 +28,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\BlazorApp1\\DataAccessLibrary\\DataAccessLibrary.csproj": {
-                "projectPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\BlazorApp1\\DataAccessLibrary\\DataAccessLibrary.csproj"
+              "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Old Version - NotWorking\\DataAccessLibrary\\DataAccessLibrary.csproj": {
+                "projectPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Old Version - NotWorking\\DataAccessLibrary\\DataAccessLibrary.csproj"
               },
-              "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\BlazorApp1\\EntityFrameWorkDataAccess\\EntityFrameWorkDataAccess.csproj": {
-                "projectPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\BlazorApp1\\EntityFrameWorkDataAccess\\EntityFrameWorkDataAccess.csproj"
+              "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Old Version - NotWorking\\EntityFrameWorkDataAccess\\EntityFrameWorkDataAccess.csproj": {
+                "projectPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Old Version - NotWorking\\EntityFrameWorkDataAccess\\EntityFrameWorkDataAccess.csproj"
               }
             }
           }
@@ -93,14 +93,14 @@
         }
       }
     },
-    "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\BlazorApp1\\DataAccessLibrary\\DataAccessLibrary.csproj": {
+    "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Old Version - NotWorking\\DataAccessLibrary\\DataAccessLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\BlazorApp1\\DataAccessLibrary\\DataAccessLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Old Version - NotWorking\\DataAccessLibrary\\DataAccessLibrary.csproj",
         "projectName": "DataAccessLibrary",
-        "projectPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\BlazorApp1\\DataAccessLibrary\\DataAccessLibrary.csproj",
+        "projectPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Old Version - NotWorking\\DataAccessLibrary\\DataAccessLibrary.csproj",
         "packagesPath": "C:\\Users\\exter\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\BlazorApp1\\DataAccessLibrary\\obj\\",
+        "outputPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Old Version - NotWorking\\DataAccessLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\exter\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -162,14 +162,14 @@
         }
       }
     },
-    "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\BlazorApp1\\EntityFrameWorkDataAccess\\EntityFrameWorkDataAccess.csproj": {
+    "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Old Version - NotWorking\\EntityFrameWorkDataAccess\\EntityFrameWorkDataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\BlazorApp1\\EntityFrameWorkDataAccess\\EntityFrameWorkDataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Old Version - NotWorking\\EntityFrameWorkDataAccess\\EntityFrameWorkDataAccess.csproj",
         "projectName": "EntityFrameWorkDataAccess",
-        "projectPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\BlazorApp1\\EntityFrameWorkDataAccess\\EntityFrameWorkDataAccess.csproj",
+        "projectPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Old Version - NotWorking\\EntityFrameWorkDataAccess\\EntityFrameWorkDataAccess.csproj",
         "packagesPath": "C:\\Users\\exter\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\BlazorApp1\\EntityFrameWorkDataAccess\\obj\\",
+        "outputPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Old Version - NotWorking\\EntityFrameWorkDataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\exter\\AppData\\Roaming\\NuGet\\NuGet.Config",

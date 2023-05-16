@@ -20,13 +20,14 @@ namespace EntityFrameWorkDataAccess
             using (var context = _dbContextFactory.CreateDbContext())
             {
                 context.tbContract.Add(contract);
+                context.SaveChanges();
             }
         }
         public List<tbContract> GetContracts()
         {
             using (var context = _dbContextFactory.CreateDbContext())
             {
-                return context.tbContract.ToList();
+                return context.tbContract.Include(x => x.tbUser).ToList();
             }
         }
         public List<tbUser> GetUsers()
@@ -44,11 +45,11 @@ namespace EntityFrameWorkDataAccess
             }
         }
 
-        public tbContract GetContract(int ContractId)
+        public tbContract GetContract(int Id)
         {
             using (var context = _dbContextFactory.CreateDbContext())
             {
-                return context.tbContract.Find(ContractId);
+                return context.tbContract.Include(x => x.tbUser).First(item => item.Id == Id);
             }
         }
 
@@ -74,9 +75,9 @@ namespace EntityFrameWorkDataAccess
                 dbContract.WorkEnd = contract.WorkEnd;
                 dbContract.Registred = contract.Registred;
                 dbContract.ICO = contract.ICO;
+
+                context.SaveChanges();
             }
         }
-
-
     }
 }

@@ -3468,11 +3468,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\exter\\Desktop\\Praxe-Exterernity-2ac50f13f51b863fa0ac58743755744c52013944\\BlazorApp1\\EntityFrameworkLibrary\\EntityFrameworkLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Functioning\\BlazorApp1\\EntityFrameworkLibrary\\EntityFrameworkLibrary.csproj",
       "projectName": "EntityFrameworkLibrary",
-      "projectPath": "C:\\Users\\exter\\Desktop\\Praxe-Exterernity-2ac50f13f51b863fa0ac58743755744c52013944\\BlazorApp1\\EntityFrameworkLibrary\\EntityFrameworkLibrary.csproj",
+      "projectPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Functioning\\BlazorApp1\\EntityFrameworkLibrary\\EntityFrameworkLibrary.csproj",
       "packagesPath": "C:\\Users\\exter\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\exter\\Desktop\\Praxe-Exterernity-2ac50f13f51b863fa0ac58743755744c52013944\\BlazorApp1\\EntityFrameworkLibrary\\obj\\",
+      "outputPath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Functioning\\BlazorApp1\\EntityFrameworkLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\exter\\AppData\\Roaming\\NuGet\\NuGet.Config",

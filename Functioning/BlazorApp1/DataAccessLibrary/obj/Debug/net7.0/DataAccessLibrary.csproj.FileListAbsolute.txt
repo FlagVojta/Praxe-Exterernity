@@ -22,3 +22,15 @@ C:\Users\exter\Desktop\Praxe-Exterernity-2ac50f13f51b863fa0ac58743755744c5201394
 C:\Users\exter\Desktop\Praxe-Exterernity-2ac50f13f51b863fa0ac58743755744c52013944\BlazorApp1\DataAccessLibrary\obj\Debug\net7.0\refint\DataAccessLibrary.dll
 C:\Users\exter\Desktop\Praxe-Exterernity-2ac50f13f51b863fa0ac58743755744c52013944\BlazorApp1\DataAccessLibrary\obj\Debug\net7.0\DataAccessLibrary.pdb
 C:\Users\exter\Desktop\Praxe-Exterernity-2ac50f13f51b863fa0ac58743755744c52013944\BlazorApp1\DataAccessLibrary\obj\Debug\net7.0\ref\DataAccessLibrary.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\DataAccessLibrary\bin\Debug\net7.0\DataAccessLibrary.deps.json
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\DataAccessLibrary\bin\Debug\net7.0\DataAccessLibrary.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\DataAccessLibrary\bin\Debug\net7.0\DataAccessLibrary.pdb
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\DataAccessLibrary\obj\Debug\net7.0\DataAccessLibrary.csproj.AssemblyReference.cache
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\DataAccessLibrary\obj\Debug\net7.0\DataAccessLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\DataAccessLibrary\obj\Debug\net7.0\DataAccessLibrary.AssemblyInfoInputs.cache
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\DataAccessLibrary\obj\Debug\net7.0\DataAccessLibrary.AssemblyInfo.cs
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\DataAccessLibrary\obj\Debug\net7.0\DataAccessLibrary.csproj.CoreCompileInputs.cache
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\DataAccessLibrary\obj\Debug\net7.0\DataAccessLibrary.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\DataAccessLibrary\obj\Debug\net7.0\refint\DataAccessLibrary.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\DataAccessLibrary\obj\Debug\net7.0\DataAccessLibrary.pdb
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\DataAccessLibrary\obj\Debug\net7.0\ref\DataAccessLibrary.dll

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dS09mzdnmgWubkHc3HoKT0lZ7w4RKaglZsfRPQRSYCFpGBAaIjKhPeRYaNIw/uX6a2bnItaOVXaAnOSsDX1zdA==",
+  "dgSpecHash": "iUqYKjSsw/UxdqF6KpFV8hse9OK5dE46Q7+IxbJ/TVGL4FPYdh0rGjW4YR6+rISxtFp/CtaLdBD29ZveXXW4jA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\exter\\Desktop\\Praxe-Exterernity-2ac50f13f51b863fa0ac58743755744c52013944\\BlazorApp1\\EntityFrameworkLibrary\\EntityFrameworkLibrary.csproj",
+  "projectFilePath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Functioning\\BlazorApp1\\EntityFrameworkLibrary\\EntityFrameworkLibrary.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\exter\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\exter\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

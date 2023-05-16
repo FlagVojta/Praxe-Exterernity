@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jGJDB8QyQPE0QrH37alREcYV1+S3FvwNmhjQUU3IYxM/iSUTuz9/QDGXHG3o2H8OAWsgo/mPknQUnT1lK1UOng==",
+  "dgSpecHash": "jYx7GrirJkmvceiYoSaOKmOTmom42D2uKr9tAQ2AkodX9TSrk8no1sjhO4ZNMJ00dzMWzjPPxLReuiPdU73RRQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\exter\\Desktop\\Praxe-Exterernity-2ac50f13f51b863fa0ac58743755744c52013944\\BlazorApp1\\DataAccessLibrary\\DataAccessLibrary.csproj",
+  "projectFilePath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Functioning\\BlazorApp1\\DataAccessLibrary\\DataAccessLibrary.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\exter\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\exter\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

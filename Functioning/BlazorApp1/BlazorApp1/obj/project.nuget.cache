@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eh7wU+kNqQCnALfmxOy5vv/wtpfWN+CaHHr4lyyKaRzF4EDEXO4aavsTLzgPVa/Z8q7OzVam0pvWC5cTn6bwsg==",
+  "dgSpecHash": "tJuWmul6q1djQ1FHEQBwtoNU5fM86TBQALlpJNuLnZN/w2HCuANfTeLmwLX08ZYEYNNWBeWP7CG6gxCVaz5yWg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\exter\\Desktop\\Praxe-Exterernity-2ac50f13f51b863fa0ac58743755744c52013944\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj",
+  "projectFilePath": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Functioning\\BlazorApp1\\BlazorApp1\\BlazorApp1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\exter\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\exter\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
