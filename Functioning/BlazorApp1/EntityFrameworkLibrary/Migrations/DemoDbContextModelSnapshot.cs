@@ -124,7 +124,49 @@ namespace EntityFrameworkLibrary.Migrations
                     b.ToTable("tbUser");
                 });
 
+            modelBuilder.Entity("EntityFrameworkLibrary.Models.Application", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("BirthDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PSC")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StreeAndNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("tbUserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("tbUserId");
+
+                    b.ToTable("applications");
+                });
+
             modelBuilder.Entity("EntityFrameWorkDataAccess.Models.tbContract", b =>
+                {
+                    b.HasOne("EntityFrameWorkDataAccess.Models.tbUser", "tbUser")
+                        .WithMany()
+                        .HasForeignKey("tbUserId");
+
+                    b.Navigation("tbUser");
+                });
+
+            modelBuilder.Entity("EntityFrameworkLibrary.Models.Application", b =>
                 {
                     b.HasOne("EntityFrameWorkDataAccess.Models.tbUser", "tbUser")
                         .WithMany()

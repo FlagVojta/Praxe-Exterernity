@@ -1,5 +1,79 @@
-﻿<h3>ApplicationForm</h3>
+﻿@page "/ApplicationForm"
+@using EntityFrameWorkDataAccess;
+@using EntityFrameworkLibrary.Models;
+@inject DatabaseService dbService
+@inject NotificationService service
+
+
+<body style="background-color:azure">
+    <h3>Přihláška na praxi</h3>
+
+    <div style="background-color:azure">
+        <RadzenColumn Size="12" SizeSM="6">
+            <RadzenStack>
+                <RadzenFormField Text="Ulice a číslo" Variant="@variant">
+                    <RadzenTextBox @bind-Value="@applicationForm.StreeAndNumber" />
+                </RadzenFormField>
+                <RadzenFormField Text="Město" Variant="@variant">
+                    <RadzenTextBox @bind-Value="@applicationForm.City" />
+                </RadzenFormField>
+                <RadzenFormField Text="PSČ" Variant="@variant">
+                    <RadzenTextBox @bind-Value="@applicationForm.PSC" />
+                </RadzenFormField>
+                <RadzenFormField Text="Telefonní číslo" Variant="@variant">
+                    <RadzenTextBox @bind-Value="@applicationForm.PhoneNumber" />
+                </RadzenFormField>
+                <RadzenFormField Text="Datum Narození" Variant="@variant">
+                    <RadzenTextBox @bind-Value="@applicationForm.BirthDate" />
+                </RadzenFormField>
+            </RadzenStack>
+        </RadzenColumn>
+        <br>
+        <RadzenButton Click=@Save Text="Save" ButtonStyle="ButtonStyle.Primary"/>
+    </div>
+</body>
+<RadzenNotification></RadzenNotification>
+
+
+
 
 @code {
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+    private Application applicationForm = new();
+    Variant variant = Variant.Outlined;
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+        var authState = await authenticationState;
+        this.applicationForm = dbService.GetApplications().FirstOrDefault(item => item.tbUser.Login == authState.User.Identity.Name);
 
+    }
+    public void Save()
+    {
+        try
+        {
+            dbService.EditApplication(applicationForm);
+        }
+        catch (Exception)
+        {
+            NotificationMessage errorMessage = new NotificationMessage
+            {
+                Severity = NotificationSeverity.Error,
+                Summary = "Error",
+                Detail = "Incorrect Date Format HH:mm",
+                Duration = 4000
+            };
+            service.Notify(errorMessage);
+            return;
+        }
+        NotificationMessage goodMessage = new NotificationMessage
+        {
+            Severity = NotificationSeverity.Success,
+            Summary = "Approved",
+            Detail = "Saved",
+            Duration = 4000
+        };
+        service.Notify(goodMessage);
+    }
 }

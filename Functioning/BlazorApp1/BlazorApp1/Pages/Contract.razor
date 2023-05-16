@@ -148,7 +148,6 @@
             service.Notify(errorMessage);
             return;
         }
-        dbService.EditContract(contract);
         NotificationMessage goodMessage = new NotificationMessage
         {
             Severity = NotificationSeverity.Success,

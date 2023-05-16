@@ -1,4 +1,5 @@
 ﻿using EntityFrameWorkDataAccess.Models;
+using EntityFrameworkLibrary.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.Contracts;
 using System.Linq;
@@ -75,6 +76,28 @@ namespace EntityFrameWorkDataAccess
                 dbContract.WorkEnd = contract.WorkEnd;
                 dbContract.Registred = contract.Registred;
                 dbContract.ICO = contract.ICO;
+
+                context.SaveChanges();
+            }
+        }
+        public List<Application> GetApplications()
+        {
+            using (var context = _dbContextFactory.CreateDbContext())
+            {
+                return context.applications.Include(x => x.tbUser).ToList();
+            }
+        }
+        public void EditApplication(Application applicationForm)
+        {
+            using (var context = _dbContextFactory.CreateDbContext())
+            {
+                Application app = context.applications.Find(applicationForm.Id);
+                
+                app.BirthDate = applicationForm.BirthDate;
+                app.PSC = applicationForm.PSC;
+                app.PhoneNumber = applicationForm.PhoneNumber;
+                app.City = applicationForm.City;
+                app.StreeAndNumber = applicationForm.StreeAndNumber;
 
                 context.SaveChanges();
             }

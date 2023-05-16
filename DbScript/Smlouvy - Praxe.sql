@@ -39,6 +39,7 @@ CREATE TABLE tbContract(
 go
 ALTER TABLE tbUser ADD FOREIGN KEY (ContractId) REFERENCES tbContract (Id);
 go
+
 create trigger trUserInsert
 on tbUser
 after insert
@@ -57,7 +58,13 @@ as
 		INSERT INTO tbContract (tbUserId)
 		SELECT Id
 		FROM inserted
-		WHERE Type = 'User';
+		WHERE Type = 'User'
+
+		INSERT INTO applications (tbUserId)
+		SELECT Id
+		FROM inserted
+		WHERE Type = 'User'
+		
 	end
 go
 
