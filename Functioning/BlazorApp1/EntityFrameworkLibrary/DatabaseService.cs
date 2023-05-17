@@ -87,6 +87,14 @@ namespace EntityFrameWorkDataAccess
                 return context.applications.Include(x => x.tbUser).ToList();
             }
         }
+        public Application GetApplication(int id)
+        {
+            using (var context = _dbContextFactory.CreateDbContext())
+            {
+                
+                return context.applications.Include(x => x.tbUser).FirstOrDefault(item => item.Id == id);
+            }
+        }
         public void EditApplication(Application applicationForm)
         {
             using (var context = _dbContextFactory.CreateDbContext())

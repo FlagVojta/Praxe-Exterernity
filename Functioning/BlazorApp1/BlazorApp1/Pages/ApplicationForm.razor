@@ -41,13 +41,15 @@
 @code {
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }
+    [Parameter]
+    public int applicationId { get; set; }
     private Application applicationForm = new();
     Variant variant = Variant.Outlined;
     protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
         var authState = await authenticationState;
-        this.applicationForm = dbService.GetApplications().FirstOrDefault(item => item.tbUser.Login == authState.User.Identity.Name);
+        this.applicationForm = dbService.GetApplication(applicationId);
 
     }
     public void Save()
