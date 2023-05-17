@@ -1,42 +1,58 @@
-﻿<div style="background-color:white" class="top-row ps-3 navbar navbar-dark">
+﻿@using BlazorApp1.Authentication;
+@using EntityFrameWorkDataAccess;
+@using EntityFrameWorkDataAccess.Models;
+@inject DatabaseService dbService
+@inject NavigationManager navMan
+@inject AuthenticationStateProvider authStateProvider
+
+
+<nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">BlazorApp1</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+        <a class="navbar-brand">Praxátor</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <AuthorizeView Roles="User">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav m-lg-auto">
+                <a class="nav-link active" aria-current="page" href="@Url" @onclick=@NavigateToContract>Smlouva</a>
+                <a class="nav-link active" href="/greetings">Přihláška na praxi</a>
+                <a class="nav-link active" href="/">Záznam o praxi</a>
+                <a class="nav-link active" @onclick=Logout href="/">Logout</a>
+                
+            </div>
+        </div>
+        </AuthorizeView>
     </div>
-</div>
+</nav>
 
-<div style="background-color:white" class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav style="background-color:white" class="flex-column">
-        <AuthorizeView>
-            <Authorized>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="contract">
-                        <span class="oi oi-plus" aria-hidden="true"></span> Contract
-                    </NavLink>
-                </div>
-            </Authorized>
-        </AuthorizeView>
-        <AuthorizeView>
-            <Authorized>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="ContractList">
-                        <span class="oi oi-people" aria-hidden="true"></span> Contract List
-                    </NavLink>
-                </div>
-            </Authorized>
-        </AuthorizeView>
-    </nav>
-</div>
-
-@code {
-    private bool collapseNavMenu = true;
-
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
+@code{
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+    private string Url;
+    protected override async Task OnInitializedAsync()
     {
-        collapseNavMenu = !collapseNavMenu;
+        base.OnInitializedAsync();
+
+
+        await NavigateToContract();
+
+    }
+    public async Task NavigateToContract()
+    {
+        var authState = await authenticationState;
+        tbContract contract = dbService.GetContracts().FirstOrDefault(item => item.tbUser.Login == authState.User.Identity.Name);
+        //navMan.NavigateTo($"/contract/{contract.Id}");
+        if (contract == null)
+        {
+            return;
+        }
+        Url = $"/contract/{contract.Id}"!;
+    }
+    public async Task Logout()
+    {
+        var AuthProvider = (CustomAuthentication)authStateProvider;
+        await AuthProvider.UpdateAuthenticationState(null);
+        navMan.NavigateTo("/", true);
     }
 }

@@ -1,4 +1,5 @@
-﻿@attribute [Authorize(Roles = "User,Administrator")]
+﻿@layout MainLayout
+@attribute [Authorize(Roles = "User,Administrator")]
 @page "/contract/{contractId:int}"
 @inject IUserData _dbu
 @inject IContractData _dbc
