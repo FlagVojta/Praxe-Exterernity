@@ -12,7 +12,12 @@
 @inject AuthenticationStateProvider authStateProvider;
 @inject NavigationManager navManager;
 
-<RadzenCard class="rz-my-12 rz-mx-auto rz-p-2 rz-p-md-8" style="max-width: 400px; position:center">
+<RadzenStack AlignItems="AlignItems.Center" Class="rz-mx-auto rz-my-12"Style="position:relative;top:150px">
+
+    <RadzenImage Path="https://st3.depositphotos.com/31206640/36834/v/600/depositphotos_368340550-stock-illustration-bitten-black-pear-logo-white.jpg" Style="width: 15rem; border:solid;box-shadow:inherit" />
+
+</RadzenStack>
+<RadzenCard class="rz-my-12 rz-mx-auto rz-p-2 rz-p-md-8" style="max-width: 350px; position:relative;top:150px">
     <RadzenStack Gap="2rem">
     <RadzenFormField Text="Username">
         <RadzenTextBox @bind-Value="@model.Login" />

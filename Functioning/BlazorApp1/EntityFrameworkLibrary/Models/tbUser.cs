@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using EntityFrameworkLibrary.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,5 +19,6 @@ namespace EntityFrameWorkDataAccess.Models
         public string Password { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
+        public List<WorkRecord> workRecords { get; set; }
     }
 }

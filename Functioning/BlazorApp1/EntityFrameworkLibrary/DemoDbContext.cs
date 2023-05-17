@@ -20,5 +20,7 @@ namespace EntityFrameWorkDataAccess
         public DbSet<tbUser> tbUser { get; set; }
         public DbSet<tbContract> tbContract { get; set; }
         public DbSet<Application> applications { get; set; }
+
+        public DbSet<WorkRecord> workRecords { get; set; }
     }
 }

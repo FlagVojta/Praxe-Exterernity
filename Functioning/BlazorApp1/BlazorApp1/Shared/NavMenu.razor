@@ -35,12 +35,19 @@
         </button>
         <AuthorizeView Roles="User">
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav m-lg-auto">
+                <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="@ContractUrl">Smlouva</a>
-                    <a class="nav-link active" href="/greetings">Přihláška na praxi</a>
-                    <a class="nav-link active" href="/">Záznam o praxi</a>
+                    <a class="nav-link active" href="@ApplicationUrl">Přihláška na praxi</a>
+                    <a class="nav-link active" href="/Record">Záznam o praxi</a>
                     <a class="nav-link active" @onclick=Logout href="/">Logout</a>
 
+                </div>
+            </div>
+        </AuthorizeView>
+        <AuthorizeView Roles="Administrator">
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" @onclick=Logout href="/">Logout</a>
                 </div>
             </div>
         </AuthorizeView>

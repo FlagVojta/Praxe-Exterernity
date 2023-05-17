@@ -66,3 +66,41 @@ h1:focus {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+.red-heading {
+    background: green !important;
+    color: white;
+}
+
+#firma-heading {
+    background: red;
+}
+
+
+.flex-box-end {
+    display: flex;
+    justify-content: flex-end
+}
+
+h1{
+    padding-left:20px
+}
+
+.data-grid-div{
+    padding:40px;
+    padding-top:20px;
+    height:100vh;
+    background-color:azure;
+}
+
+.custom-data-grid{
+    border:solid
+}
+
+/*.styled-row-column span {
+    color: red !important;
+}
+
+.styled-row-column-heading span {
+    color: green;
+}*/

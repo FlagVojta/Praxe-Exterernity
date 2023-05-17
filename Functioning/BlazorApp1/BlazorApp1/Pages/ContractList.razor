@@ -11,24 +11,27 @@
 @inject IUserData _dbu
 @inject NavigationManager navMan
 
+<h1>Seznam smluv</h1>
+<div class="data-grid-div">
+    <RadzenDataGrid class="custom-data-grid" Context="item" Data="@this.contracts" TItem="tbContract" AllowVirtualization="true" Style="height:800px"
+                    AllowFiltering="false" FilterPopupRenderMode="PopupRenderMode.OnDemand" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" LogicalFilterOperator="LogicalFilterOperator.Or"
+                    AllowSorting="false">
+        <Columns>
+            <RadzenDataGridColumn TItem="tbContract" Property="OrgName" Title="Název Organizace" />
+            <RadzenDataGridColumn TItem="tbContract" Property="City" Title="Město" />
+            <RadzenDataGridColumn Width="200px" TItem="tbContract" Property="item.tbUser.Name" Title="Jméno žáka" />
+            <RadzenDataGridColumn Width="200px" TItem="tbContract" Property="item.tbUser.LastName" Title="Příjmení žáka" CssClass="styled-row-column" HeaderCssClass="styled-row-column-heading" />
+            <RadzenDataGridColumn Width="200px" TItem="tbContract" Property="LastChanged" Title="Datum Poslední úpravy" />
+            <RadzenDataGridColumn TItem="tbContract" Context="item" Filterable="false" Sortable="false" TextAlign="TextAlign.Right" Width="156px">
+                <Template Context="item">
+                    <RadzenButton Icon="edit" ButtonStyle="ButtonStyle.Light" Variant="Variant.Flat" Size="ButtonSize.Medium" Click="@(args => Edit(item.Id))">
+                    </RadzenButton>
+                </Template>
+            </RadzenDataGridColumn>
+        </Columns>
+    </RadzenDataGrid>
+</div>
 
-<RadzenDataGrid  Context="item" Data="@this.contracts" TItem="tbContract" AllowVirtualization="true" Style="height:800px"
-                AllowFiltering="false" FilterPopupRenderMode="PopupRenderMode.OnDemand" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" LogicalFilterOperator="LogicalFilterOperator.Or"
-                AllowSorting="false">
-    <Columns>
-        <RadzenDataGridColumn TItem="tbContract" Property="OrgName" Title="Název Organizace" />
-        <RadzenDataGridColumn TItem="tbContract" Property="City" Title="Město" />
-        <RadzenDataGridColumn TItem="tbContract" Property="item.tbUser.Name" Title="Jméno žáka" />
-        <RadzenDataGridColumn TItem="tbContract" Property="item.tbUser.LastName" Title="Příjmení žáka" />
-        <RadzenDataGridColumn TItem="tbContract" Property="LastChanged" Title="Datum Poslední úpravy" />  
-        <RadzenDataGridColumn TItem="tbContract" Context="item" Filterable="false" Sortable="false" TextAlign="TextAlign.Right" Width="156px">
-            <Template Context="item">
-                <RadzenButton Icon="edit" ButtonStyle="ButtonStyle.Light" Variant="Variant.Flat" Size="ButtonSize.Medium" Click="@(args => Edit(item.Id))">
-                </RadzenButton>
-            </Template>
-         </RadzenDataGridColumn>
-    </Columns>
-</RadzenDataGrid>
 
 @code {
     [CascadingParameter]

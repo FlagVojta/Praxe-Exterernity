@@ -1,8 +1,6 @@
 ﻿@layout MainLayout
 @attribute [Authorize(Roles = "User,Administrator")]
 @page "/contract/{contractId:int}"
-@inject IUserData _dbu
-@inject IContractData _dbc
 @inject NotificationService service
 @inject NavigationManager navMan
 @inject DatabaseService dbService
@@ -14,7 +12,7 @@
 @using EntityFrameWorkDataAccess.Models;
 
 <PageTitle>Contract</PageTitle>
-<h1 style="margin-left=10vh">Smlouva</h1>
+<h1>Smlouva</h1>
 @{
     @if (this.contract == null)
     {
@@ -28,7 +26,7 @@
     }
     else
     {
-        <div class="rz-p-0 rz-p-md-12"style="height:auto">
+        <div class="rz-p-0 rz-p-md-12"style="height:auto; background-color:azure">
            
             <h4>Firma</h4>
             <RadzenStack>
@@ -103,7 +101,9 @@
                 </RadzenFormField>
             </RadzenStack>  
             <br>
-            <RadzenButton Disabled="@disabled" Click=@Save Text="Save" ButtonStyle="ButtonStyle.Primary" />
+             <div class="flex-box-end">
+                <RadzenButton Disabled="@disabled" Click=@Save Text="Save" ButtonStyle="ButtonStyle.Info" />
+             </div>
         </div>
         <RadzenNotification></RadzenNotification>
     }        
@@ -122,8 +122,14 @@
     protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
+
         this.contract = dbService.GetContract(contractId);
-        await this.AuthenticateUser(contract);
+        var authState = await authenticationState;
+        this.authenticated = this.AuthenticateUser(contract, authState);
+        if (authState.User.IsInRole("Administrator"))
+        {
+            disabled = true;
+        }
     }
     private async Task Save()
     {
@@ -158,18 +164,12 @@
         };
         service.Notify(goodMessage);
     }
-    public async Task AuthenticateUser(tbContract con)
+    public bool AuthenticateUser(tbContract con,AuthenticationState authState)
     {
-        var authState = await authenticationState;
-
         if (con.tbUser.Login != authState.User.Identity.Name && authState.User.IsInRole("User"))
         {
             this.authenticated = false;
         }
-        if (authState.User.IsInRole("Administrator"))
-        {
-            disabled = true;
-        }
+        return this.authenticated;
     }
-
 }

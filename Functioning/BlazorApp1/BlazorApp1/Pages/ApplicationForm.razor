@@ -1,5 +1,5 @@
 ﻿@layout MainLayout
-@page "/ApplicationForm"
+@page "/ApplicationForm/{applicationId:int}"
 @using EntityFrameWorkDataAccess;
 @using EntityFrameworkLibrary.Models;
 @inject DatabaseService dbService
@@ -7,36 +7,42 @@
 
 
 <body style="background-color:azure">
-    <h3>Přihláška na praxi</h3>
-
-    <div style="background-color:azure">
-        <RadzenColumn Size="12" SizeSM="6">
-            <RadzenStack>
-                <RadzenFormField Text="Ulice a číslo" Variant="@variant">
-                    <RadzenTextBox @bind-Value="@applicationForm.StreeAndNumber" />
-                </RadzenFormField>
-                <RadzenFormField Text="Město" Variant="@variant">
-                    <RadzenTextBox @bind-Value="@applicationForm.City" />
-                </RadzenFormField>
-                <RadzenFormField Text="PSČ" Variant="@variant">
-                    <RadzenTextBox @bind-Value="@applicationForm.PSC" />
-                </RadzenFormField>
-                <RadzenFormField Text="Telefonní číslo" Variant="@variant">
-                    <RadzenTextBox @bind-Value="@applicationForm.PhoneNumber" />
-                </RadzenFormField>
-                <RadzenFormField Text="Datum Narození" Variant="@variant">
-                    <RadzenTextBox @bind-Value="@applicationForm.BirthDate" />
-                </RadzenFormField>
-            </RadzenStack>
-        </RadzenColumn>
-        <br>
-        <RadzenButton Click=@Save Text="Save" ButtonStyle="ButtonStyle.Primary"/>
-    </div>
+    <h1 style="padding-left:20px">Přihláška na praxi</h1>
+@if (this.authenticated == false)
+    {
+       <h2 style="padding-left:20px">You dont have permission to this page</h2>       
+    }
+    else
+    {
+        <div class="rz-p-0 rz-p-md-12" style="background-color:azure; height:100vh">
+            <RadzenColumn Size="12" SizeSM="6">
+                <RadzenStack>
+                    <RadzenFormField Text="Ulice a číslo" Variant="@variant">
+                        <RadzenTextBox @bind-Value="@applicationForm.StreeAndNumber" />
+                    </RadzenFormField>
+                    <RadzenFormField Text="Město" Variant="@variant">
+                        <RadzenTextBox @bind-Value="@applicationForm.City" />
+                    </RadzenFormField>
+                    <RadzenFormField Text="PSČ" Variant="@variant">
+                        <RadzenTextBox @bind-Value="@applicationForm.PSC" />
+                    </RadzenFormField>
+                    <RadzenFormField Text="Telefonní číslo" Variant="@variant">
+                        <RadzenTextBox @bind-Value="@applicationForm.PhoneNumber" />
+                    </RadzenFormField>
+                    <RadzenFormField Text="Datum Narození" Variant="@variant">
+                        <RadzenTextBox @bind-Value="@applicationForm.BirthDate" />
+                    </RadzenFormField>
+                </RadzenStack>
+            </RadzenColumn>
+            <br>
+            <div class="flex-box-end">
+                <RadzenButton Click=@Save Text="Save" ButtonStyle="ButtonStyle.Info" />
+            </div>
+            
+        </div>
+    }   
 </body>
 <RadzenNotification></RadzenNotification>
-
-
-
 
 @code {
     [CascadingParameter]
@@ -44,13 +50,15 @@
     [Parameter]
     public int applicationId { get; set; }
     private Application applicationForm = new();
+    private bool authenticated = true;
+    private bool disabled;
     Variant variant = Variant.Outlined;
     protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
-        var authState = await authenticationState;
         this.applicationForm = dbService.GetApplication(applicationId);
-
+        var authState = await authenticationState;       
+        this.authenticated = AuthenticateUser(applicationForm,authState);
     }
     public void Save()
     {
@@ -78,5 +86,13 @@
             Duration = 4000
         };
         service.Notify(goodMessage);
+    }
+    public bool AuthenticateUser(Application con, AuthenticationState authState)
+    {       
+        if (con.tbUser.Login != authState.User.Identity.Name && authState.User.IsInRole("User"))
+        {
+            this.authenticated = false;
+        }
+        return this.authenticated;
     }
 }

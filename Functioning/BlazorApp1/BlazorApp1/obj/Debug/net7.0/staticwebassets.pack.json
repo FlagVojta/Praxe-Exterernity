@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
+      "Id": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Functioning\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\myCss\\styles.css",
+      "PackagePath": "staticwebassets\\css\\myCss\\styles.css"
+    },
+    {
       "Id": "C:\\Users\\exter\\Desktop\\Praxátor\\Praxe-Exterernity\\Functioning\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
       "PackagePath": "staticwebassets\\css\\open-iconic"
     },

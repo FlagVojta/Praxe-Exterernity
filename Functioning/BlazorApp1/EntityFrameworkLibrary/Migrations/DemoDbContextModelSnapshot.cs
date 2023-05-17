@@ -157,6 +157,33 @@ namespace EntityFrameworkLibrary.Migrations
                     b.ToTable("applications");
                 });
 
+            modelBuilder.Entity("EntityFrameworkLibrary.Models.WorkRecord", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("WorkDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WorkTime")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("tbUserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("tbUserId");
+
+                    b.ToTable("workRecords");
+                });
+
             modelBuilder.Entity("EntityFrameWorkDataAccess.Models.tbContract", b =>
                 {
                     b.HasOne("EntityFrameWorkDataAccess.Models.tbUser", "tbUser")
@@ -173,6 +200,20 @@ namespace EntityFrameworkLibrary.Migrations
                         .HasForeignKey("tbUserId");
 
                     b.Navigation("tbUser");
+                });
+
+            modelBuilder.Entity("EntityFrameworkLibrary.Models.WorkRecord", b =>
+                {
+                    b.HasOne("EntityFrameWorkDataAccess.Models.tbUser", null)
+                        .WithMany("workRecords")
+                        .HasForeignKey("tbUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("EntityFrameWorkDataAccess.Models.tbUser", b =>
+                {
+                    b.Navigation("workRecords");
                 });
 #pragma warning restore 612, 618
         }
