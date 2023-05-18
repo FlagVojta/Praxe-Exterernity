@@ -4,6 +4,8 @@
 @inject NotificationService service
 @inject NavigationManager navMan
 @inject DatabaseService dbService
+@inject CustomAuthentication customauth
+@using BlazorApp1.Authentication;
 @using DataAccessLibrary;
 @using DataAccessLibrary.Models
 @using DataAccessLibrary.Interfaces
@@ -115,17 +117,15 @@
     private bool disabled;
     private bool authenticated = true;
     Variant variant = Variant.Outlined;
-
     [Parameter] 
     public int contractId { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
-
         this.contract = dbService.GetContract(contractId);
         var authState = await authenticationState;
-        this.authenticated = this.AuthenticateUser(contract, authState);
+        this.authenticated = customauth.AuthenticateUser(contract,authState);
         if (authState.User.IsInRole("Administrator"))
         {
             disabled = true;
@@ -140,7 +140,9 @@
             validation.Validate(this.contract.WorkEnd);
             validation.Validate(this.contract.BreakStart);
             validation.Validate(this.contract.BreakEnd);
+
             this.contract.LastChanged = DateTime.Now.ToString("MM.dd.yyyy HH:mm:ss");
+
             dbService.EditContract(contract);
         }
         catch (Exception)
@@ -163,13 +165,5 @@
             Duration = 4000
         };
         service.Notify(goodMessage);
-    }
-    public bool AuthenticateUser(tbContract con,AuthenticationState authState)
-    {
-        if (con.tbUser.Login != authState.User.Identity.Name && authState.User.IsInRole("User"))
-        {
-            this.authenticated = false;
-        }
-        return this.authenticated;
     }
 }

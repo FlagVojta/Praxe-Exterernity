@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using EntityFrameworkLibrary.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace EntityFrameWorkDataAccess.Models
 {
-    public class tbContract
+    public class tbContract : AbstractForeignModels
     {
         [Key]
         public int Id { get; set; }
         public int? tbUserId { get; set; }
-        public tbUser? tbUser { get; set; }
+        //public tbUser? tbUser { get; set; }
         public string? OrgName { get; set; }
         public string? Registred { get; set; }
         public string? Based { get; set; }

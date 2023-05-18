@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.Authorization;
+﻿using EntityFrameworkLibrary.Models;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.Identity.Client;
 using System.Security.Claims;
@@ -15,10 +16,8 @@ namespace BlazorApp1.Authentication
         {
             this._sessionstorage = storage;
         }
-
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-
             try
             {
                 var userSessionStorageResult = await _sessionstorage.GetAsync<UserSession>("UserSession");
@@ -68,6 +67,13 @@ namespace BlazorApp1.Authentication
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(claimsprincipal)));
         }
 
-
+        public bool AuthenticateUser(AbstractForeignModels record, AuthenticationState authState)
+        {
+            if (record.tbUser.Login != authState.User.Identity.Name && authState.User.IsInRole("User"))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

@@ -1,7 +1,9 @@
 ﻿@page "/Record/{RecordId:int}"
+@using BlazorApp1.Authentication;
 @using EntityFrameWorkDataAccess;
 @using EntityFrameworkLibrary.Models;
 @inject DatabaseService dbService
+@inject CustomAuthentication customauth
 @layout MainLayout
 <div style="height:100vh">
     <h1>Záznam o praxi</h1>
@@ -23,24 +25,26 @@
 
 
 @code {
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
     [Parameter]
     public int RecordId{ get; set; }
     public WorkRecord workRecord{ get; set; }
     public bool disabled;
+    public bool authenticated;
     Variant variant = Variant.Outlined;
 
     protected override async Task OnInitializedAsync()
     {
+        var authState = await authenticationState;
         workRecord = dbService.GetRecord(RecordId);
         workRecord.workDays.Sort((obj1, obj2) => obj1.Date.CompareTo(obj2.Date));
-        workRecord.ReviewOfCompany = "Super";
+        this.authenticated = customauth.AuthenticateUser(workRecord, authState);
     }
-
     public string DateTimeConvert(DateTime time)
     {
         return time.ToString("ddd d.M");
     }
-
     public void Save()
     {
         try
@@ -52,10 +56,8 @@
             }
         }
         catch (Exception)
-        {
-            
+        {           
             throw;
-        }
+        }      
     }
-
 }

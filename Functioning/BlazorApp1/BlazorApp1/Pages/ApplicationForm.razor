@@ -1,9 +1,11 @@
 ﻿@layout MainLayout
 @page "/ApplicationForm/{applicationId:int}"
+@using BlazorApp1.Authentication;
 @using EntityFrameWorkDataAccess;
 @using EntityFrameworkLibrary.Models;
 @inject DatabaseService dbService
 @inject NotificationService service
+@inject CustomAuthentication customauth
 
 
 <body style="background-color:azure">
@@ -57,8 +59,8 @@
     {
         base.OnInitialized();
         this.applicationForm = dbService.GetApplication(applicationId);
-        var authState = await authenticationState;       
-        this.authenticated = AuthenticateUser(applicationForm,authState);
+        var authState = await authenticationState;
+        this.authenticated = customauth.AuthenticateUser(applicationForm,authState);
     }
     public void Save()
     {
@@ -86,13 +88,5 @@
             Duration = 4000
         };
         service.Notify(goodMessage);
-    }
-    public bool AuthenticateUser(Application con, AuthenticationState authState)
-    {       
-        if (con.tbUser.Login != authState.User.Identity.Name && authState.User.IsInRole("User"))
-        {
-            this.authenticated = false;
-        }
-        return this.authenticated;
     }
 }

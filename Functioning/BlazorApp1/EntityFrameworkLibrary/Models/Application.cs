@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EntityFrameworkLibrary.Models
 {
-    public class Application
+    public class Application : AbstractForeignModels
     {
         public int Id { get; set; }
         public int? tbUserId { get; set; }
@@ -16,6 +16,6 @@ namespace EntityFrameworkLibrary.Models
         public string? PSC { get; set; }
         public string? PhoneNumber { get; set; }
         public string? BirthDate { get; set; }
-        public tbUser tbUser { get; set; }
+        //public tbUser tbUser { get; set; }
     }
 }

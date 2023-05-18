@@ -17,7 +17,6 @@ namespace EntityFrameWorkDataAccess
         {
             this._dbContextFactory = dbContextFactory;
         }
-
         //Contract----------------------------------------------------------------------------------
         public void AddContract(tbContract contract)
         {
@@ -63,7 +62,6 @@ namespace EntityFrameWorkDataAccess
                 dbContract.WorkEnd = contract.WorkEnd;
                 dbContract.Registred = contract.Registred;
                 dbContract.ICO = contract.ICO;
-
                 context.SaveChanges();
             }
         }
@@ -128,7 +126,6 @@ namespace EntityFrameWorkDataAccess
                 return context.workRecords.Include(x => x.workDays).Include(x => x.tbUser).FirstOrDefault(item => item.Id == id);
             }
         }
-
         public void EditRecord(WorkRecord record)
         {
             using (var context = _dbContextFactory.CreateDbContext())
@@ -142,14 +139,14 @@ namespace EntityFrameWorkDataAccess
 
             }
         }
-
+        //Day___________________________________________________________________________________________________________________________
         public void EditDay(WorkDay day)
         {
             using (var context = _dbContextFactory.CreateDbContext())
             {
                 WorkDay daydb = context.workDays.Find(day.Id);
-                day.WorkTime = day.WorkTime;
-                day.WorkDescription = day.WorkDescription;                
+                daydb.WorkTime = day.WorkTime;
+                daydb.WorkDescription = day.WorkDescription;                
                 context.SaveChanges();
 
             }

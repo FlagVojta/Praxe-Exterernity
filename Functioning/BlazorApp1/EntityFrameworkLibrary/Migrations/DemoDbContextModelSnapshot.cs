@@ -88,7 +88,7 @@ namespace EntityFrameworkLibrary.Migrations
 
                     b.HasIndex("tbUserId");
 
-                    b.ToTable("tbContract");
+                    b.ToTable("tbContract", (string)null);
                 });
 
             modelBuilder.Entity("EntityFrameWorkDataAccess.Models.tbUser", b =>
@@ -121,7 +121,7 @@ namespace EntityFrameworkLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("tbUser");
+                    b.ToTable("tbUser", (string)null);
                 });
 
             modelBuilder.Entity("EntityFrameworkLibrary.Models.Application", b =>
@@ -154,7 +154,7 @@ namespace EntityFrameworkLibrary.Migrations
 
                     b.HasIndex("tbUserId");
 
-                    b.ToTable("applications");
+                    b.ToTable("applications", (string)null);
                 });
 
             modelBuilder.Entity("EntityFrameworkLibrary.Models.WorkDay", b =>
@@ -181,7 +181,7 @@ namespace EntityFrameworkLibrary.Migrations
 
                     b.HasIndex("WorkRecordId");
 
-                    b.ToTable("workDays");
+                    b.ToTable("workDays", (string)null);
                 });
 
             modelBuilder.Entity("EntityFrameworkLibrary.Models.WorkRecord", b =>
@@ -207,7 +207,7 @@ namespace EntityFrameworkLibrary.Migrations
 
                     b.HasIndex("tbUserId");
 
-                    b.ToTable("workRecords");
+                    b.ToTable("workRecords", (string)null);
                 });
 
             modelBuilder.Entity("EntityFrameWorkDataAccess.Models.tbContract", b =>
