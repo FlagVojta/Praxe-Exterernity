@@ -16,6 +16,8 @@ namespace EntityFrameWorkDataAccess
         {
             this._dbContextFactory = dbContextFactory;
         }
+
+        //Contract----------------------------------------------------------------------------------
         public void AddContract(tbContract contract)
         {
             using (var context = _dbContextFactory.CreateDbContext())
@@ -31,21 +33,6 @@ namespace EntityFrameWorkDataAccess
                 return context.tbContract.Include(x => x.tbUser).ToList();
             }
         }
-        public List<tbUser> GetUsers()
-        {
-            using (var context = _dbContextFactory.CreateDbContext())
-            {
-                return context.tbUser.ToList();
-            }
-        }
-        public tbUser GetUser(string UserLogin)
-        {
-            using (var context = _dbContextFactory.CreateDbContext())
-            {
-                return context.tbUser.FirstOrDefault(item => item.Login == UserLogin);
-            }
-        }
-
         public tbContract GetContract(int Id)
         {
             using (var context = _dbContextFactory.CreateDbContext())
@@ -53,7 +40,6 @@ namespace EntityFrameWorkDataAccess
                 return context.tbContract.Include(x => x.tbUser).First(item => item.Id == Id);
             }
         }
-
         public void EditContract(tbContract contract)
         {
             using (var context = _dbContextFactory.CreateDbContext())
@@ -80,6 +66,22 @@ namespace EntityFrameWorkDataAccess
                 context.SaveChanges();
             }
         }
+        //User----------------------------------------------------------------------------------------------
+        public List<tbUser> GetUsers()
+        {
+            using (var context = _dbContextFactory.CreateDbContext())
+            {
+                return context.tbUser.ToList();
+            }
+        }
+        public tbUser GetUser(string UserLogin)
+        {
+            using (var context = _dbContextFactory.CreateDbContext())
+            {
+                return context.tbUser.FirstOrDefault(item => item.Login == UserLogin);
+            }
+        }
+        //Application-------------------------------------------------------------------------------------
         public List<Application> GetApplications()
         {
             using (var context = _dbContextFactory.CreateDbContext())
@@ -108,6 +110,21 @@ namespace EntityFrameWorkDataAccess
                 app.StreeAndNumber = applicationForm.StreeAndNumber;
 
                 context.SaveChanges();
+            }
+        }
+        //Record-------------------------------------------------------------------------------------------------------------
+        public List<WorkRecord> GetRecords()
+        {
+            using (var context = _dbContextFactory.CreateDbContext())
+            {
+                return context.workRecords.Include(x => x.workDays).ToList();
+            }
+        }
+        public WorkRecord GetRecord(int id)
+        {
+            using (var context = _dbContextFactory.CreateDbContext())
+            {
+                return context.workRecords.Include(x => x.workDays).Include(x => x.tbUser).FirstOrDefault(item => item.Id == id);
             }
         }
     }

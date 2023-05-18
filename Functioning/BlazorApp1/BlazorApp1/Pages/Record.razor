@@ -1,10 +1,40 @@
-﻿@page "/Record"
+﻿@page "/Record/{RecordId:int}"
+@using EntityFrameWorkDataAccess;
+@using EntityFrameworkLibrary.Models;
+@inject DatabaseService dbService
 @layout MainLayout
 <div style="height:100vh">
     <h1>Záznam o praxi</h1>
+    <div>
+        @foreach (var item in workRecord.workDays)
+        {
+            <div class="record-row">
+                <h3>@DateTimeConvert(item.Date)</h3>
+                <RadzenNumeric @bind-Value=@item.WorkTime />
+                <RadzenFormField Text="Náplň práce" Variant="@variant">
+                    <RadzenTextBox @bind-Value="@item.WorkDescription" />
+                </RadzenFormField>
+            </div>   
+        }        
+    </div>
 </div>
 
 
 @code {
+    [Parameter]
+    public int RecordId{ get; set; }
+    public WorkRecord workRecord{ get; set; }
+    Variant variant = Variant.Outlined;
+
+    protected override async Task OnInitializedAsync()
+    {
+        workRecord = dbService.GetRecord(RecordId);
+        workRecord.workDays.Sort();
+    }
+
+    public string DateTimeConvert(DateTime time)
+    {
+        return time.ToString("ddd d.M");
+    }
 
 }

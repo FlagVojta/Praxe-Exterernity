@@ -97,6 +97,12 @@ h1{
     border:solid
 }
 
+
+.record-row{
+    display:flex;
+    justify-content:flex-start
+}
+
 /*.styled-row-column span {
     color: red !important;
 }

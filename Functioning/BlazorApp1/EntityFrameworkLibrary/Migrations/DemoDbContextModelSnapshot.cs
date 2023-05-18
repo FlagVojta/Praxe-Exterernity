@@ -157,7 +157,7 @@ namespace EntityFrameworkLibrary.Migrations
                     b.ToTable("applications");
                 });
 
-            modelBuilder.Entity("EntityFrameworkLibrary.Models.WorkRecord", b =>
+            modelBuilder.Entity("EntityFrameworkLibrary.Models.WorkDay", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -171,7 +171,36 @@ namespace EntityFrameworkLibrary.Migrations
                     b.Property<string>("WorkDescription")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("WorkRecordId")
+                        .HasColumnType("int");
+
                     b.Property<string>("WorkTime")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("workRecordsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WorkRecordId");
+
+                    b.ToTable("workDays");
+                });
+
+            modelBuilder.Entity("EntityFrameworkLibrary.Models.WorkRecord", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ReviewOfCompany")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReviewOfStudent")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("tbUserId")
@@ -202,18 +231,32 @@ namespace EntityFrameworkLibrary.Migrations
                     b.Navigation("tbUser");
                 });
 
+            modelBuilder.Entity("EntityFrameworkLibrary.Models.WorkDay", b =>
+                {
+                    b.HasOne("EntityFrameworkLibrary.Models.WorkRecord", null)
+                        .WithMany("workDays")
+                        .HasForeignKey("WorkRecordId");
+                });
+
             modelBuilder.Entity("EntityFrameworkLibrary.Models.WorkRecord", b =>
                 {
-                    b.HasOne("EntityFrameWorkDataAccess.Models.tbUser", null)
+                    b.HasOne("EntityFrameWorkDataAccess.Models.tbUser", "tbUser")
                         .WithMany("workRecords")
                         .HasForeignKey("tbUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("tbUser");
                 });
 
             modelBuilder.Entity("EntityFrameWorkDataAccess.Models.tbUser", b =>
                 {
                     b.Navigation("workRecords");
+                });
+
+            modelBuilder.Entity("EntityFrameworkLibrary.Models.WorkRecord", b =>
+                {
+                    b.Navigation("workDays");
                 });
 #pragma warning restore 612, 618
         }
