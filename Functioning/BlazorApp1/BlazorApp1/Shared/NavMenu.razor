@@ -2,6 +2,8 @@
 @using EntityFrameWorkDataAccess;
 @using EntityFrameWorkDataAccess.Models;
 @using EntityFrameworkLibrary.Models;
+@using EntityFrameworkLibrary;
+@inject CustomNavigation customNav
 @inject DatabaseService dbService
 @inject NavigationManager navMan
 @inject AuthenticationStateProvider authStateProvider
@@ -38,7 +40,7 @@
                 <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="@ContractUrl">Smlouva</a>
                     <a class="nav-link active" href="@ApplicationUrl">Přihláška na praxi</a>
-                    <a class="nav-link active" href="/Record">Záznam o praxi</a>
+                    <a class="nav-link active" href="@WorkRecordUrl">Záznam o praxi</a>
                     <a class="nav-link active" @onclick=Logout href="/">Logout</a>
 
                 </div>
@@ -60,40 +62,54 @@
 
     private string ContractUrl;
     private string ApplicationUrl;
+    private string WorkRecordUrl;
 
     protected override async Task OnInitializedAsync()
     {
         base.OnInitializedAsync();
 
         var authState = await authenticationState;
-        NavigateToContract(authState);
-        NavigateToApplicationForm(authState);
+        //NavigateToContract(authState);
+        //NavigateToApplicationForm(authState);
+        //NavigateToRecordForm(authState);
+        this.ContractUrl = customNav.NavigateToContract(authState,dbService);
+        this.ApplicationUrl = customNav.NavigateToApplicationForm(authState,dbService);
+        this.WorkRecordUrl = customNav.NavigateToRecordForm(authState, dbService);
+
 
     }
-    public void NavigateToContract(AuthenticationState authState)
-    {
+    //public void NavigateToContract(AuthenticationState authState)
+    //{
 
-        tbContract contract = dbService.GetContracts().FirstOrDefault(item => item.tbUser.Login == authState.User.Identity.Name);
-        //navMan.NavigateTo($"/contract/{contract.Id}");
-        if (contract == null)
-        {
-            return;
-        }
-        ContractUrl = $"/contract/{contract.Id}"!;
-    }
+    //    tbContract contract = dbService.GetContracts().FirstOrDefault(item => item.tbUser.Login == authState.User.Identity.Name);
+    //    //navMan.NavigateTo($"/contract/{contract.Id}");
+    //    if (contract == null)
+    //    {
+    //        return;
+    //    }
+    //    ContractUrl = $"/contract/{contract.Id}"!;
+    //}
 
-    public void NavigateToApplicationForm(AuthenticationState authState)
-    {
-        Application applicationForm = dbService.GetApplications().FirstOrDefault(item => item.tbUser.Login == authState.User.Identity.Name);
-        //navMan.NavigateTo($"/contract/{contract.Id}");
-        if (applicationForm == null)
-        {
-            return;
-        }
-        ApplicationUrl = $"/ApplicationForm/{applicationForm.Id}";
-
-        
-    }
+    //public void NavigateToApplicationForm(AuthenticationState authState)
+    //{
+    //    Application applicationForm = dbService.GetApplications().FirstOrDefault(item => item.tbUser.Login == authState.User.Identity.Name);
+    //    //navMan.NavigateTo($"/contract/{contract.Id}");
+    //    if (applicationForm == null)
+    //    {
+    //        return;
+    //    }
+    //    ApplicationUrl = $"/ApplicationForm/{applicationForm.Id}";       
+    //}
+    //public void NavigateToRecordForm(AuthenticationState authState)
+    //{
+    //    WorkRecord workRecord = dbService.GetRecords().FirstOrDefault(item => item.tbUser.Login == authState.User.Identity.Name);
+    //    //navMan.NavigateTo($"/contract/{contract.Id}");
+    //    if (workRecord == null)
+    //    {
+    //        return;
+    //    }
+    //    WorkRecordUrl = $"/Record/{workRecord.Id}";
+    //}
 
     public async Task Logout()
     {

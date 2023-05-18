@@ -337,3 +337,8 @@ C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\Blazor
 C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\obj\Debug\net7.0\BlazorApp1.pdb
 C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\obj\Debug\net7.0\BlazorApp1.genruntimeconfig.cache
 C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\obj\Debug\net7.0\ref\BlazorApp1.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Microsoft.AspNetCore.Authorization.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Microsoft.AspNetCore.Components.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Microsoft.AspNetCore.Components.Authorization.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Microsoft.AspNetCore.Metadata.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Microsoft.Extensions.Options.dll

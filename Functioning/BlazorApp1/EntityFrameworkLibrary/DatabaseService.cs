@@ -1,6 +1,7 @@
 ﻿using EntityFrameWorkDataAccess.Models;
 using EntityFrameworkLibrary.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
@@ -117,7 +118,7 @@ namespace EntityFrameWorkDataAccess
         {
             using (var context = _dbContextFactory.CreateDbContext())
             {
-                return context.workRecords.Include(x => x.workDays).ToList();
+                return context.workRecords.Include(x => x.workDays).Include(x => x.tbUser).ToList();
             }
         }
         public WorkRecord GetRecord(int id)
@@ -125,6 +126,32 @@ namespace EntityFrameWorkDataAccess
             using (var context = _dbContextFactory.CreateDbContext())
             {
                 return context.workRecords.Include(x => x.workDays).Include(x => x.tbUser).FirstOrDefault(item => item.Id == id);
+            }
+        }
+
+        public void EditRecord(WorkRecord record)
+        {
+            using (var context = _dbContextFactory.CreateDbContext())
+            {
+                WorkRecord rcd = context.workRecords.Include(x => x.workDays).FirstOrDefault(item => item.Id == record.Id);
+
+                rcd.ReviewOfStudent = record.ReviewOfStudent;
+                rcd.ReviewOfCompany = record.ReviewOfCompany;
+                rcd.workDays = rcd.workDays;
+                context.SaveChanges();
+
+            }
+        }
+
+        public void EditDay(WorkDay day)
+        {
+            using (var context = _dbContextFactory.CreateDbContext())
+            {
+                WorkDay daydb = context.workDays.Find(day.Id);
+                day.WorkTime = day.WorkTime;
+                day.WorkDescription = day.WorkDescription;                
+                context.SaveChanges();
+
             }
         }
     }

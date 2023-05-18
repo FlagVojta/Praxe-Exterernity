@@ -171,14 +171,11 @@ namespace EntityFrameworkLibrary.Migrations
                     b.Property<string>("WorkDescription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("WorkRecordId")
+                    b.Property<int>("WorkRecordId")
                         .HasColumnType("int");
 
                     b.Property<string>("WorkTime")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("workRecordsId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -235,7 +232,9 @@ namespace EntityFrameworkLibrary.Migrations
                 {
                     b.HasOne("EntityFrameworkLibrary.Models.WorkRecord", null)
                         .WithMany("workDays")
-                        .HasForeignKey("WorkRecordId");
+                        .HasForeignKey("WorkRecordId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("EntityFrameworkLibrary.Models.WorkRecord", b =>

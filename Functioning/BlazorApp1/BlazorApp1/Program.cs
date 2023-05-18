@@ -3,6 +3,7 @@ using BlazorApp1.Data;
 using DataAccessLibrary;
 using DataAccessLibrary.Interfaces;
 using EntityFrameWorkDataAccess;
+using EntityFrameworkLibrary;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
@@ -28,6 +29,7 @@ builder.Services.AddScoped<NotificationService>();
 builder.Services.AddDbContextFactory<DemoDbContext>((DbContextOptionsBuilder options) => options.UseSqlServer(connectionString));
 builder.Services.AddTransient<DatabaseService>();
 builder.Services.AddTransient<DemoDbContext>();
+builder.Services.AddTransient<CustomNavigation>();
 
 var app = builder.Build();
 

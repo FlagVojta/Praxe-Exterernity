@@ -14,7 +14,6 @@ namespace EntityFrameworkLibrary.Models
         public string ReviewOfCompany { get; set; }
         public string ReviewOfStudent { get; set; }
         public List<WorkDay> workDays { get; set; }
-
         public tbUser tbUser { get; set; }
     }
 }

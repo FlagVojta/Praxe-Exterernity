@@ -100,7 +100,15 @@ h1{
 
 .record-row{
     display:flex;
-    justify-content:flex-start
+    flex-direction:column
+    justify-content:flex-start;
+    margin-left:30px;
+    gap:30px;
+}
+
+
+.big-container-record{
+    align-items:stretch
 }
 
 /*.styled-row-column span {

@@ -5,17 +5,19 @@
 @layout MainLayout
 <div style="height:100vh">
     <h1>Záznam o praxi</h1>
-    <div>
+    <div class="big-container-record">        
         @foreach (var item in workRecord.workDays)
         {
-            <div class="record-row">
-                <h3>@DateTimeConvert(item.Date)</h3>
-                <RadzenNumeric @bind-Value=@item.WorkTime />
-                <RadzenFormField Text="Náplň práce" Variant="@variant">
-                    <RadzenTextBox @bind-Value="@item.WorkDescription" />
-                </RadzenFormField>
-            </div>   
-        }        
+            
+            <div class="record-row" style="text-align-last">
+            <h3>@DateTimeConvert(item.Date)</h3>
+            <RadzenNumeric Min="0" Max="24" @bind-Value=@item.WorkTime />
+            <RadzenTextBox @bind-Value="@item.WorkDescription" />
+            </div>
+        }
+        <div class="flex-box-end">
+            <RadzenButton Disabled="@disabled" Click=@Save Text="Save" ButtonStyle="ButtonStyle.Info" />
+        </div>
     </div>
 </div>
 
@@ -24,17 +26,36 @@
     [Parameter]
     public int RecordId{ get; set; }
     public WorkRecord workRecord{ get; set; }
+    public bool disabled;
     Variant variant = Variant.Outlined;
 
     protected override async Task OnInitializedAsync()
     {
         workRecord = dbService.GetRecord(RecordId);
-        workRecord.workDays.Sort();
+        workRecord.workDays.Sort((obj1, obj2) => obj1.Date.CompareTo(obj2.Date));
+        workRecord.ReviewOfCompany = "Super";
     }
 
     public string DateTimeConvert(DateTime time)
     {
         return time.ToString("ddd d.M");
+    }
+
+    public void Save()
+    {
+        try
+        {
+            dbService.EditRecord(workRecord);
+            foreach (var item in workRecord.workDays)
+            {
+                dbService.EditDay(item);
+            }
+        }
+        catch (Exception)
+        {
+            
+            throw;
+        }
     }
 
 }

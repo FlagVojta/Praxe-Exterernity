@@ -11,9 +11,14 @@ insert into tbUser(Type,Login,Password,Name,LastName) values('Administrator','Jo
 select * from tbContract
 select * from dbo.tbUser
 select * from applications
+select * from workRecords
+select * from workDays
 
 delete tbContract
 delete tbUser
+delete applications
+delete workRecords
+delete workDays
 
 use master
 go
