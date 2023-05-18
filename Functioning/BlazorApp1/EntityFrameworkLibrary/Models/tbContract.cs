@@ -18,41 +18,20 @@ namespace EntityFrameWorkDataAccess.Models
         public int Id { get; set; }
         public int? tbUserId { get; set; }
         //public tbUser? tbUser { get; set; }
- 
-        public string? OrgName { get; set; }
-        
-     
-        public string? Registred { get; set; }
-        
-        
-        public string? Based { get; set; }
-      
-      
-        public string? ICO { get; set; }
-        
-      
-        public string? RepresentedBy { get; set; }
-        
-       
-        public string? StreetANumber { get; set; }
-        
-     
-        public string? City { get; set; }
-        
-        
-        public string? PSC { get; set; }
-        
-        
-        public string? RepresentedFirstName { get; set; }
-        
-        public string? RepresentedLastName { get; set; }
-        
-        
+        public string? OrgName { get; set; }           
+        public string? Registred { get; set; }              
+        public string? Based { get; set; }            
+        public string? ICO { get; set; }              
+        public string? RepresentedBy { get; set; }              
+        public string? StreetANumber { get; set; }             
+        public string? City { get; set; }              
+        public string? PSC { get; set; }      
+        public string? RepresentedFirstName { get; set; }       
+        public string? RepresentedLastName { get; set; }   
         public string? MobileNumber
         {
             get; set;
         }
-   
         public string? WorkDescription { get; set; }
         
         
@@ -80,8 +59,6 @@ namespace EntityFrameWorkDataAccess.Models
         {
             get; set;
         }
-
-
 
         //public string Help(string item)
         //{

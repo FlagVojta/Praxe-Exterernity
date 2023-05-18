@@ -1,5 +1,21 @@
-﻿<h3>Seznam</h3>
+﻿@attribute [Authorize(Roles = "User,Administrator")]
+@layout MainLayout
+@inject IJSRuntime js;
 
+<PageTitle>Index</PageTitle>
+
+<h1>Hello</h1>
+<h1 class="text text-center">Hello Guest</h1>
+<h1>Login Success</h1>
 @code {
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+
+    public async Task DisplayHello()
+    {
+        var authState = await authenticationState;
+        var message = $"{authState.User.Identity.Name}";
+        await js.InvokeVoidAsync("alert", message);
+    }
 
 }

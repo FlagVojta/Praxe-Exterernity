@@ -1,0 +1,30 @@
+﻿@attribute [Authorize(Roles = "User,Administrator")]
+@layout MainLayout
+@page "/ContractPDF"
+@inject IJSRuntime js;
+
+
+<div class="row">
+    <div class="col-4">
+        <button class="btn btn-primary" @onclick=PrintTable>Show Table and Print</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-4">
+        <button class="btn btn-primary" @onclick=PrintDocument>Show Document and Print</button>
+    </div>
+</div>
+
+
+
+
+@code{
+    public async Task PrintTable()
+    {
+        await js.InvokeAsync<object>("open", new object[] { "/TableData", "_blank" });
+    }
+    public async Task PrintDocument()
+    {
+        await js.InvokeAsync<object>("open", new object[] { "/InvoiceData", "_blank" });
+    }
+}

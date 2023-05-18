@@ -1,4 +1,5 @@
 ﻿@page "/Record/{RecordId:int}"
+@attribute [Authorize(Roles = "User,Administrator")]
 @using BlazorApp1.Authentication;
 @using EntityFrameWorkDataAccess;
 @using EntityFrameworkLibrary.Models;
