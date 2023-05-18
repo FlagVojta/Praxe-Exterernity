@@ -30,6 +30,7 @@ builder.Services.AddDbContextFactory<DemoDbContext>((DbContextOptionsBuilder opt
 builder.Services.AddTransient<DatabaseService>();
 builder.Services.AddTransient<DemoDbContext>();
 builder.Services.AddTransient<CustomNavigation>();
+builder.Services.AddTransient<CustomAuthentication>();
 
 var app = builder.Build();
 

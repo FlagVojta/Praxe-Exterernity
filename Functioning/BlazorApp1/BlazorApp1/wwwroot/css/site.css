@@ -79,7 +79,8 @@ h1:focus {
 
 .flex-box-end {
     display: flex;
-    justify-content: flex-end
+    justify-content: flex-end;
+    margin-top:20px
 }
 
 h1{
@@ -100,15 +101,19 @@ h1{
 
 .record-row{
     display:flex;
-    flex-direction:column
+    /*flex-direction:column;*/
+    /*flex-direction:row*/
     justify-content:flex-start;
     margin-left:30px;
     gap:30px;
+    
+}
+.mycontainer{
+    margin-left:20px;
 }
 
-
 .big-container-record{
-    align-items:stretch
+    /*align-items:stretch*/
 }
 
 /*.styled-row-column span {

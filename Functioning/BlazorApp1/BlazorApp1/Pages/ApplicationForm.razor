@@ -17,6 +17,7 @@
     else
     {
         <div class="rz-p-0 rz-p-md-12" style="background-color:azure; height:100vh">
+            <h4>Informace o studentovi</h4>
             <RadzenColumn Size="12" SizeSM="6">
                 <RadzenStack>
                     <RadzenFormField Text="Ulice a číslo" Variant="@variant">
@@ -74,7 +75,6 @@
             {
                 Severity = NotificationSeverity.Error,
                 Summary = "Error",
-                Detail = "Incorrect Date Format HH:mm",
                 Duration = 4000
             };
             service.Notify(errorMessage);

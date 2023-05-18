@@ -148,7 +148,6 @@ namespace EntityFrameWorkDataAccess
                 daydb.WorkTime = day.WorkTime;
                 daydb.WorkDescription = day.WorkDescription;                
                 context.SaveChanges();
-
             }
         }
     }

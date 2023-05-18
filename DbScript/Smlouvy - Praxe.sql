@@ -69,8 +69,12 @@ as
 		FROM inserted
 		WHERE Type = 'User'
 
-		insert into workRecords (tbUserId)
-		select id from inserted where type = 'User'
+		if((select Type from inserted) != 'Administrator')
+		begin
+			insert into workRecords (tbUserId)
+			select id from inserted where type = 'User'
+		end
+		
 		
 	end
 go
@@ -113,7 +117,7 @@ begin
     SELECT @nextMonday = DATEADD(WEEK, DATEDIFF(WEEK, 0, GETDATE()) + 1, 0); -- Calculate next Monday
 
 	SELECT @workRecordId = Id FROM inserted
-
+	
     EXEC InsertWorkDays @nextMonday, @workRecordId;
 end
 	

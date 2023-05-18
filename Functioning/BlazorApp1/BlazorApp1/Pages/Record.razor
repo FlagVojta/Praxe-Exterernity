@@ -2,33 +2,55 @@
 @using BlazorApp1.Authentication;
 @using EntityFrameWorkDataAccess;
 @using EntityFrameworkLibrary.Models;
+@using System.Globalization;
 @inject DatabaseService dbService
 @inject CustomAuthentication customauth
+@inject NotificationService service
 @layout MainLayout
+
 <div style="height:100vh">
     <h1>Záznam o praxi</h1>
-    <div class="big-container-record">        
+    <div class="container-md" style="margin-left:20px;margin-top:20px">        
         @foreach (var item in workRecord.workDays)
         {
-            
-            <div class="record-row" style="text-align-last">
-            <h3>@DateTimeConvert(item.Date)</h3>
-            <RadzenNumeric Min="0" Max="24" @bind-Value=@item.WorkTime />
-            <RadzenTextBox @bind-Value="@item.WorkDescription" />
+            if (i == 4 && i == 0)
+            {
+                <h3>Druhý týdn</h3>
+            }
+            <div class="row" style="margin-top:10px">
+                <div class="col">
+                    <h4 style="font-family: Avenir Next, Calibri, Verdana, sans-serif;">
+                        <strong>@DateTimeConvert(item.Date)</strong>
+                    </h4>
+                </div>
+                <div class="col">
+                    <RadzenFormField Text="Pracovní doba">
+                        <RadzenNumeric Min="0" Max="24" @bind-Value=@item.WorkTime />
+                    </RadzenFormField>
+                </div>
+                <div class="col">
+                    <RadzenFormField Style="width: 100%;
+                                     box-sizing: border-box;" Text="Pracovní náplň">
+                        <RadzenTextBox @bind-Value="@item.WorkDescription" />
+                    </RadzenFormField>
+                    
+                </div>
             </div>
+            i++;
         }
         <div class="flex-box-end">
             <RadzenButton Disabled="@disabled" Click=@Save Text="Save" ButtonStyle="ButtonStyle.Info" />
         </div>
+
     </div>
 </div>
-
-
+<RadzenNotification></RadzenNotification>
 @code {
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; }
     [Parameter]
     public int RecordId{ get; set; }
+    public int i { get; set; } = 0;
     public WorkRecord workRecord{ get; set; }
     public bool disabled;
     public bool authenticated;
@@ -43,7 +65,8 @@
     }
     public string DateTimeConvert(DateTime time)
     {
-        return time.ToString("ddd d.M");
+        CultureInfo czechCulture = new CultureInfo("cs-CZ");
+        return time.ToString("ddd d.M", czechCulture).Replace(czechCulture.DateTimeFormat.GetDayName(time.DayOfWeek)[0], char.ToUpper(czechCulture.DateTimeFormat.GetDayName(time.DayOfWeek)[0]));
     }
     public void Save()
     {
@@ -54,10 +77,25 @@
             {
                 dbService.EditDay(item);
             }
+            NotificationMessage goodMessage = new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Success,
+                    Summary = "Approved",
+                    Detail = "Saved",
+                    Duration = 4000
+            };
+            service.Notify(goodMessage);
         }
         catch (Exception)
         {           
-            throw;
+            NotificationMessage errorMessage = new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Summary = "Error",
+                    Duration = 4000
+                };
+            service.Notify(errorMessage);
+            return;         
         }      
     }
 }
