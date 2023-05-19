@@ -345,3 +345,15 @@ C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\Blazor
 C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Syncfusion.Licensing.dll
 C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Syncfusion.Compression.Portable.dll
 C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Syncfusion.Pdf.Portable.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\HarfBuzzSharp.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\QuestPDF.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\SkiaSharp.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\SkiaSharp.HarfBuzz.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\runtimes\osx\native\libHarfBuzzSharp.dylib
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\runtimes\win-arm64\native\libHarfBuzzSharp.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\runtimes\win-x64\native\libHarfBuzzSharp.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\runtimes\win-x86\native\libHarfBuzzSharp.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\runtimes\osx\native\libSkiaSharp.dylib
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\runtimes\win-arm64\native\libSkiaSharp.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\runtimes\win-x64\native\libSkiaSharp.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\runtimes\win-x86\native\libSkiaSharp.dll

@@ -2,11 +2,15 @@
 @attribute [Authorize(Roles = "User,Administrator")]
 @page "/ApplicationForm/{applicationId:int}"
 @using BlazorApp1.Authentication;
+@using BlazorApp1.Data;
 @using EntityFrameWorkDataAccess;
+@using EntityFrameWorkDataAccess.Models;
 @using EntityFrameworkLibrary.Models;
 @inject DatabaseService dbService
 @inject NotificationService service
 @inject CustomAuthentication customauth
+@inject IJSRuntime js;
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment
 
 
 <body style="background-color:azure">
@@ -39,8 +43,9 @@
                 </RadzenStack>
             </RadzenColumn>
             <br>
-            <div class="flex-box-end">
+            <div class="flex-box-end" style="gap:10px">
                 <RadzenButton Click=@Save Text="Save" ButtonStyle="ButtonStyle.Info" />
+                <RadzenButton Click=@CreatePDF Text="PDF Export" ButtonStyle="ButtonStyle.Info" />
             </div>
             
         </div>
@@ -90,4 +95,18 @@
         };
         service.Notify(goodMessage);
     }
+    protected async Task CreatePDF()
+    {
+        var authState = await authenticationState;
+        tbUser user = dbService.GetUser(authState.User.Identity.Name);
+        ExportService service = new ExportService(hostingEnvironment);
+        MemoryStream documentStream = service.CreateApplicationPDF(user.Name, user.LastName);
+
+        await js.InvokeAsync<object>(
+            "saveAsFile",
+            "Invoice.pdf",
+            Convert.ToBase64String(documentStream.ToArray())
+        );
+    }
+    
 }

@@ -20,10 +20,7 @@
                     <a class="nav-link active" aria-current="page" href="@ContractUrl">Smlouva</a>
                     <a class="nav-link active" href="@ApplicationUrl">Přihláška na praxi</a>
                     <a class="nav-link active" href="@WorkRecordUrl">Záznam o praxi</a>
-                    <a class="nav-link active" href="/ContractPDF">Pdf</a>
-                    <a class="nav-link active" @onclick=Logout href="/">Logout</a>
-                   
-
+                    <a class="nav-link active" @onclick=Logout href="/">Logout</a>               
                 </div>
             </div>
         </AuthorizeView>
@@ -53,8 +50,6 @@
         this.ContractUrl = customNav.NavigateToContract(authState,dbService);
         this.ApplicationUrl = customNav.NavigateToApplicationForm(authState,dbService);
         this.WorkRecordUrl = customNav.NavigateToRecordForm(authState, dbService);
-
-
     }
     public async Task Logout()
     {

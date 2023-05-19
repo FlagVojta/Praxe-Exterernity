@@ -1,6 +1,7 @@
 ﻿@attribute [Authorize(Roles = "User,Administrator")]
 @layout MainLayout
 @page "/ContractPDF"
+@inject DatabaseService dbService
 @using BlazorApp1.Data;
 @inject IJSRuntime js;
 @inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment
@@ -9,6 +10,8 @@
 @inject Microsoft.JSInterop.IJSRuntime Js
 @using System.IO;
 @using System;
+@using EntityFrameWorkDataAccess;
+@using EntityFrameWorkDataAccess.Models;
 
 
 <button class="btn btzn-primary" @onclick=@CreatePDF>Export to PDf</button>
@@ -18,14 +21,18 @@
 
 @code{
 
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
     protected override async Task OnInitializedAsync()
     {
 
     }
     protected async Task CreatePDF()
     {
+        var authState = await authenticationState;
+        tbUser user = dbService.GetUser(authState.User.Identity.Name);
         ExportService service = new ExportService(hostingEnvironment);
-        MemoryStream documentStream = service.CreatePDF();
+        MemoryStream documentStream = service.CreateApplicationPDF(user.Name,user.LastName);
 
         await js.InvokeAsync<object>(
             "saveAsFile",
