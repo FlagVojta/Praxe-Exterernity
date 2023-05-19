@@ -73,6 +73,10 @@
             "Radzen.Blazor": {
               "target": "Package",
               "version": "[4.10.4, )"
+            },
+            "Syncfusion.Pdf.Net.Core": {
+              "target": "Package",
+              "version": "[21.2.5, )"
             }
           },
           "imports": [

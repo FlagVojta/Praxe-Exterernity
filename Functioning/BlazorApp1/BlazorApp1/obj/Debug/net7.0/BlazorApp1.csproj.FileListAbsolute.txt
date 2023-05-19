@@ -342,3 +342,6 @@ C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\Blazor
 C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Microsoft.AspNetCore.Components.Authorization.dll
 C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Microsoft.AspNetCore.Metadata.dll
 C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Syncfusion.Licensing.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Syncfusion.Compression.Portable.dll
+C:\Users\exter\Desktop\Praxátor\Praxe-Exterernity\Functioning\BlazorApp1\BlazorApp1\bin\Debug\net7.0\Syncfusion.Pdf.Portable.dll

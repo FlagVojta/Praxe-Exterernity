@@ -13,6 +13,10 @@ using Microsoft.EntityFrameworkCore;
 using Radzen;
 
 
+
+
+
+
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("Default");
 
@@ -31,6 +35,8 @@ builder.Services.AddTransient<DatabaseService>();
 builder.Services.AddTransient<DemoDbContext>();
 builder.Services.AddTransient<CustomNavigation>();
 builder.Services.AddTransient<CustomAuthentication>();
+builder.Services.AddSingleton<ExportService>();
+
 
 var app = builder.Build();
 

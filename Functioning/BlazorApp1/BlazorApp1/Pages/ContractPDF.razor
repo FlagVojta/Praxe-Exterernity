@@ -1,30 +1,37 @@
 ﻿@attribute [Authorize(Roles = "User,Administrator")]
 @layout MainLayout
 @page "/ContractPDF"
+@using BlazorApp1.Data;
 @inject IJSRuntime js;
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnvironment
+@inject WeatherForecastService ForecastService
+@inject ExportService exportService
+@inject Microsoft.JSInterop.IJSRuntime Js
+@using System.IO;
+@using System;
 
 
-<div class="row">
-    <div class="col-4">
-        <button class="btn btn-primary" @onclick=PrintTable>Show Table and Print</button>
-    </div>
-</div>
-<div class="row">
-    <div class="col-4">
-        <button class="btn btn-primary" @onclick=PrintDocument>Show Document and Print</button>
-    </div>
-</div>
+<button class="btn btzn-primary" @onclick=@CreatePDF>Export to PDf</button>
 
 
 
 
 @code{
-    public async Task PrintTable()
+
+    protected override async Task OnInitializedAsync()
     {
-        await js.InvokeAsync<object>("open", new object[] { "/TableData", "_blank" });
+
     }
-    public async Task PrintDocument()
+    protected async Task CreatePDF()
     {
-        await js.InvokeAsync<object>("open", new object[] { "/InvoiceData", "_blank" });
+        ExportService service = new ExportService(hostingEnvironment);
+        MemoryStream documentStream = service.CreatePDF();
+
+        await js.InvokeAsync<object>(
+            "saveAsFile",
+            "Invoice.pdf",
+            Convert.ToBase64String(documentStream.ToArray())
+        );
     }
+
 }
